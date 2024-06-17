@@ -1,8 +1,30 @@
-import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class SplashView extends StatelessWidget {
+import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
+import 'package:aplikasi_kpri_mobile/views/login_view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+      const Duration(seconds: 3),
+      () {
+        Get.offAll(
+          () => const LoginView(),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
