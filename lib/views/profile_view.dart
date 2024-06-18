@@ -6,13 +6,20 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Profil",
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
               color: Theme.of(context).colorScheme.primary,
               width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(16.0, 40.0, 16.0, 35.0),
+              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 35.0),
               child: const Row(
                 children: [
                   CircleAvatar(
