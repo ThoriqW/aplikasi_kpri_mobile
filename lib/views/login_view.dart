@@ -1,4 +1,5 @@
 import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
+import 'package:aplikasi_kpri_mobile/views/main_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +81,14 @@ class _LoginViewState extends State<LoginView> {
                             const SizedBox(height: 20),
                             ButtonGlobal(
                               text: "Login",
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MainView(),
+                                  ),
+                                );
+                              },
                             ),
                             const SizedBox(height: 16),
                             Text(
