@@ -1,4 +1,3 @@
-import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
 import 'package:aplikasi_kpri_mobile/views/main_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -94,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                             Text(
                               "Lupa Password?",
                               style: TextStyle(
-                                color: GlobalColors.primaryColor,
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                             ),
                           ],

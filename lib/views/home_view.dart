@@ -1,4 +1,3 @@
-import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
 import 'package:aplikasi_kpri_mobile/widgets/home_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class HomeView extends StatelessWidget {
           "KPRI",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        backgroundColor: GlobalColors.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -23,9 +22,9 @@ class HomeView extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  color: GlobalColors.primaryColor,
+                  color: Theme.of(context).colorScheme.primary,
                   width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 50.0),
+                  padding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 50.0),
                   child: const Row(
                     children: [
                       CircleAvatar(
@@ -52,13 +51,20 @@ class HomeView extends StatelessWidget {
                             "7204080401990001",
                             style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            "Bina Marga Kab. Tolitoli",
+                            style: TextStyle(fontSize: 12, color: Colors.white),
+                          ),
                         ],
                       )
                     ],
                   ),
                 ),
                 Positioned(
-                  bottom: -70,
+                  bottom: -75,
                   child: Container(
                     width: MediaQuery.of(context).size.width - 32,
                     decoration: BoxDecoration(
@@ -97,10 +103,10 @@ class HomeView extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: Theme.of(context)
                                     .colorScheme
-                                    .secondaryContainer,
+                                    .primaryContainer,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              padding: const EdgeInsets.all(4.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: const Text(
                                 "Okt 2009 - Mei 2024",
                                 style: TextStyle(
@@ -114,9 +120,8 @@ class HomeView extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(6.0),
                           decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .secondaryContainer,
+                            color:
+                                Theme.of(context).colorScheme.primaryContainer,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Text(

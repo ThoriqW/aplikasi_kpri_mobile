@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
 import 'package:aplikasi_kpri_mobile/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +28,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 8.0),

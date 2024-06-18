@@ -1,4 +1,3 @@
-import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
 import 'package:flutter/material.dart';
 
 class ButtonGlobal extends StatelessWidget {
@@ -9,7 +8,9 @@ class ButtonGlobal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: GlobalColors.primaryColor, // Set the background color here
+      color: Theme.of(context)
+          .colorScheme
+          .primary, // Set the background color here
       borderRadius: BorderRadius.circular(8.0),
       elevation: 4.0,
       child: InkWell(

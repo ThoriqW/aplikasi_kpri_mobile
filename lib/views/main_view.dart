@@ -1,4 +1,7 @@
 import 'package:aplikasi_kpri_mobile/views/home_view.dart';
+import 'package:aplikasi_kpri_mobile/views/invoice_view.dart';
+import 'package:aplikasi_kpri_mobile/views/notification_view.dart';
+import 'package:aplikasi_kpri_mobile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -9,7 +12,12 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  List pages = [const HomeView()];
+  List pages = [
+    const HomeView(),
+    const InvoiceView(),
+    const NotificationView(),
+    const ProfileView(),
+  ];
   int currentIndex = 0;
 
   void onTap(int index) {
