@@ -48,7 +48,7 @@ class _MainViewState extends State<MainView> {
             label: 'Tagihan',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notification_add),
+            icon: Icon(Icons.notifications),
             label: 'Notifikasi',
           ),
           BottomNavigationBarItem(

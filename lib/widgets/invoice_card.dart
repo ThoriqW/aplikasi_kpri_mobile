@@ -19,78 +19,74 @@ class InvoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(bottom: 16, top: 16),
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                width: 2,
-                color: Theme.of(context).colorScheme.onInverseSurface,
-              ),
-            ),
+    return Container(
+      padding: const EdgeInsets.only(bottom: 16, top: 16),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            width: 2,
+            color: Theme.of(context).colorScheme.onInverseSurface,
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
             children: [
-              Row(
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(width: 2, color: borderIcon),
+                ),
+                child: Icon(
+                  Icons.notes,
+                  color: colorIcon,
+                ),
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(width: 2, color: borderIcon),
-                    ),
-                    child: Icon(
-                      Icons.notes,
-                      color: colorIcon,
+                  Text(
+                    month,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
                   ),
                   const SizedBox(
-                    width: 12,
+                    height: 6,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        month,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        status,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 8),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        date.toString(),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 8),
-                      )
-                    ],
+                  Text(
+                    status,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w300, fontSize: 8),
                   ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    date.toString(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w300, fontSize: 8),
+                  )
                 ],
               ),
-              Text(
-                nominal,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-              )
             ],
           ),
-        ),
-      ],
+          Text(
+            nominal,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
