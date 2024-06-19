@@ -1,6 +1,6 @@
-const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const loginUser = (req, res) => {
     const { nip, password } = req.body;
@@ -32,11 +32,14 @@ const loginUser = (req, res) => {
 };
 
 const addUser = (req, res) => {
-    const { nip, email, password } = req.body;
+    const { nip, password } = req.body;
+
+    if (!nip || !password) {
+        return res.status(400).json({ error: 'NIP and password are required' });
+    }
 
     const newUser = {
         nip,
-        email,
         password
     };
 

@@ -34,16 +34,18 @@ const UserController = require('../controllers/UserController');
  *                   type: string
  *       401:
  *         description: Invalid credentials
+ *       404:
+ *         description: User not found
  *       500:
  *         description: Database error
- */statu
+ */
 router.post('/login', UserController.loginUser);
 
 /**
  * @swagger
  * /users:
  *   post:
- *     summary: Tambah user
+ *     summary: Add user
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -53,18 +55,17 @@ router.post('/login', UserController.loginUser);
  *             type: object
  *             required:
  *               - nip
- *               - email
  *               - password
  *             properties:
  *               nip:
- *                 type: string
- *               email:
  *                 type: string
  *               password:
  *                 type: string
  *     responses:
  *       201:
  *         description: User added successfully
+ *       400:
+ *         description: NIP and password are required
  *       500:
  *         description: Database error
  */
