@@ -36,7 +36,7 @@ const UserController = require('../controllers/UserController');
  *         description: Invalid credentials
  *       500:
  *         description: Database error
- */statu
+ */
 router.post('/login', UserController.loginUser);
 
 /**
