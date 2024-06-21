@@ -8,6 +8,7 @@ const billRoutes = require('./routes/BillRoutes');
 const organizationRoutes = require('./routes/OrganizationRoutes');
 const balanceSavingRoutes = require('./routes/BalanceSavingRoutes');
 const bannerRoutes = require('./routes/BannerRoutes');
+const notificationRoutes = require('./routes/NotificationRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,8 @@ app.use('/organizations', organizationRoutes);
 app.use('/balance_savings', balanceSavingRoutes);
 
 app.use('/banners', bannerRoutes);
+
+app.use('/notifications', notificationRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server berjalan di port ${PORT}`);
