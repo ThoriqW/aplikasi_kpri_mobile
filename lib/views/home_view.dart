@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/views/about_view.dart';
 import 'package:aplikasi_kpri_mobile/views/loan_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/home_menu.dart';
 import 'package:flutter/material.dart';
@@ -181,7 +182,16 @@ class HomeView extends StatelessWidget {
                       HomeMenu(
                           title: "Bantuan", image: "help.svg", onTap: () {}),
                       HomeMenu(
-                          title: "Tentang", image: "about.svg", onTap: () {}),
+                          title: "Tentang",
+                          image: "about.svg",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AboutView(),
+                              ),
+                            );
+                          }),
                     ],
                   ),
                 ],
