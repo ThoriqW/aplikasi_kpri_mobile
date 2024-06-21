@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/views/loan_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/home_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -146,25 +147,41 @@ class HomeView extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width - 64,
               margin: const EdgeInsets.only(top: 100),
-              child: const Column(
+              child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      HomeMenu(title: "Simpanan", image: "wallet.svg"),
-                      HomeMenu(title: "Pinjaman", image: "note.svg"),
-                      HomeMenu(title: "THR", image: "gift.svg"),
+                      HomeMenu(
+                          title: "Simpanan", image: "wallet.svg", onTap: () {}),
+                      HomeMenu(
+                          title: "Pinjaman",
+                          image: "note.svg",
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoanView(),
+                              ),
+                            );
+                          }),
+                      HomeMenu(title: "THR", image: "gift.svg", onTap: () {}),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      HomeMenu(title: "Informasi", image: "announcement.svg"),
-                      HomeMenu(title: "Bantuan", image: "help.svg"),
-                      HomeMenu(title: "Tentang", image: "about.svg"),
+                      HomeMenu(
+                          title: "Informasi",
+                          image: "announcement.svg",
+                          onTap: () {}),
+                      HomeMenu(
+                          title: "Bantuan", image: "help.svg", onTap: () {}),
+                      HomeMenu(
+                          title: "Tentang", image: "about.svg", onTap: () {}),
                     ],
                   ),
                 ],
