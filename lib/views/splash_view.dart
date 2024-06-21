@@ -35,7 +35,10 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           children: [
             Expanded(
-              child: Image.asset("assets/images/logo.png"),
+              child: Image.asset(
+                "assets/images/logo.png",
+                width: 200,
+              ),
             ),
             const Align(
               alignment: Alignment.bottomCenter,

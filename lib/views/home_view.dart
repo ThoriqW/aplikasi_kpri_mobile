@@ -106,7 +106,10 @@ class HomeView extends StatelessWidget {
                                     .primaryContainer,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 5.0,
+                                horizontal: 12.0,
+                              ),
                               child: const Text(
                                 "Okt 2009 - Mei 2024",
                                 style: TextStyle(
@@ -118,7 +121,10 @@ class HomeView extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          padding: const EdgeInsets.all(6.0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 12.0,
+                          ),
                           decoration: BoxDecoration(
                             color:
                                 Theme.of(context).colorScheme.primaryContainer,
@@ -145,9 +151,9 @@ class HomeView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      HomeMenu(title: "Simpanan", image: "wallet.png"),
-                      HomeMenu(title: "Pinjaman", image: "note.png"),
-                      HomeMenu(title: "THR", image: "gift.png"),
+                      HomeMenu(title: "Simpanan", image: "wallet.svg"),
+                      HomeMenu(title: "Pinjaman", image: "note.svg"),
+                      HomeMenu(title: "THR", image: "gift.svg"),
                     ],
                   ),
                   SizedBox(
@@ -156,9 +162,9 @@ class HomeView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      HomeMenu(title: "Informasi", image: "announcement.png"),
-                      HomeMenu(title: "Bantuan", image: "help.png"),
-                      HomeMenu(title: "Tentang", image: "about.png"),
+                      HomeMenu(title: "Informasi", image: "announcement.svg"),
+                      HomeMenu(title: "Bantuan", image: "help.svg"),
+                      HomeMenu(title: "Tentang", image: "about.svg"),
                     ],
                   ),
                 ],
