@@ -20,9 +20,10 @@ class AboutView extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width - 32,
             margin: const EdgeInsets.only(top: 15, bottom: 15),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
               color: Colors.white,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.1),
                   blurRadius: 9,

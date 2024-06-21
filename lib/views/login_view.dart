@@ -84,14 +84,20 @@ class _LoginViewState extends State<LoginView> {
                         TextFormField(
                           controller: _nipController,
                           keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             filled: true,
                             hintText: "NIP",
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                               horizontal: 15,
                               vertical: 12,
                             ),
-                            border: InputBorder.none,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 15),
@@ -99,13 +105,19 @@ class _LoginViewState extends State<LoginView> {
                           controller: _passwordController,
                           keyboardType: TextInputType.text,
                           obscureText: true,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             filled: true,
                             hintText: "Password",
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(
+                            contentPadding: const EdgeInsets.symmetric(
                               horizontal: 15,
                               vertical: 12,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
                             ),
                           ),
                         ),

@@ -1,7 +1,7 @@
 import 'package:aplikasi_kpri_mobile/views/home_view.dart';
 import 'package:aplikasi_kpri_mobile/views/invoice_view.dart';
 import 'package:aplikasi_kpri_mobile/views/notification_view.dart';
-import 'package:aplikasi_kpri_mobile/views/profile_view.dart';
+import 'package:aplikasi_kpri_mobile/views/account_view.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -16,7 +16,7 @@ class _MainViewState extends State<MainView> {
     const HomeView(),
     const InvoiceView(),
     const NotificationView(),
-    const ProfileView(),
+    const AccountView(),
   ];
   int currentIndex = 0;
 
@@ -33,7 +33,7 @@ class _MainViewState extends State<MainView> {
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        elevation: 0,
+        elevation: 15,
         onTap: onTap,
         currentIndex: currentIndex,
         selectedFontSize: 12,
@@ -56,7 +56,6 @@ class _MainViewState extends State<MainView> {
             label: 'Akun',
           ),
         ],
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
     );
   }

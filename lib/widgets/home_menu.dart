@@ -19,10 +19,6 @@ class HomeMenu extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onInverseSurface,
-          borderRadius: BorderRadius.circular(8),
-        ),
         child: Column(
           children: [
             SvgPicture.asset(
@@ -33,7 +29,7 @@ class HomeMenu extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                fontSize: 10,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),
             )

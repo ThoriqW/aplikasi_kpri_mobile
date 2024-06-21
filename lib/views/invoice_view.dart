@@ -57,9 +57,10 @@ class InvoiceView extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 35, bottom: 35),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.1),
                       blurRadius: 9,

@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -9,18 +10,28 @@ class ProfileView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Profil",
-          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              color: Theme.of(context).colorScheme.primary,
               width: double.infinity,
-              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 35.0),
-              child: const Row(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50)),
+              ),
+              child: const Column(
                 children: [
                   CircleAvatar(
                     radius: 40,
@@ -29,40 +40,38 @@ class ProfileView extends StatelessWidget {
                       radius: 37,
                     ),
                   ),
-                  SizedBox(width: 16),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Moh Thoriq Wajedi",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.white),
-                      ),
-                      Text(
-                        "7204080401990001",
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        "Bina Marga Kab. Tolitoli",
-                        style: TextStyle(fontSize: 12, color: Colors.white),
-                      ),
-                    ],
-                  )
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    "Moh Thoriq Wajedi",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.white),
+                  ),
+                  Text(
+                    "7204080401990001",
+                    style: TextStyle(fontSize: 12, color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    "Bina Marga Kab. Tolitoli",
+                    style: TextStyle(fontSize: 12, color: Colors.white),
+                  ),
                 ],
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width - 32,
-              margin: const EdgeInsets.only(top: 35),
-              decoration: const BoxDecoration(
+              margin: const EdgeInsets.only(top: 35, bottom: 20),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
                 color: Colors.white,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.1),
                     blurRadius: 9,
@@ -72,209 +81,162 @@ class ProfileView extends StatelessWidget {
                 ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.person,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Profil Saya"),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
+                  const Text(
+                    "Nama Lengkap",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
                       ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.payment,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Transaksi"),
-                          ],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
+                      ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "NIK",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
                       ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.settings,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Pengaturan"),
-                          ],
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Kantor",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "No Telepon",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Tanggal Lahir",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Alamat",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width - 32,
-              margin: const EdgeInsets.only(top: 35),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                    blurRadius: 9,
-                    spreadRadius: 0,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.help,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Pusat Bantuan"),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.list,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Syarat & Ketentuan"),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.error,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Kebijakan Privasi"),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+              child: ButtonGlobal(
+                text: "Formulir Pinjaman",
+                onTap: () {},
               ),
             ),
+            const SizedBox(height: 25),
           ],
         ),
       ),
