@@ -39,6 +39,13 @@ const ProfileController = require('../controllers/ProfileController');
  *                   type: string
  *                 email:
  *                   type: string
+ *                 photo_url:
+ *                   type: string
+ *                 join_date:
+ *                   type: string
+ *                   format: date
+ *                 status:
+ *                   type: string
  *       404:
  *         description: Profile not found
  *       500:

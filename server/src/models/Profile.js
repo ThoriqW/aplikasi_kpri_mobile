@@ -1,7 +1,11 @@
 const pool = require('../config/db');
 
 const getProfileByUserId = (userId, callback) => {
-    pool.query('SELECT * FROM member_profiles WHERE user_member_id = ?', [userId], (error, results) => {
+    const query = `
+        SELECT * 
+        FROM member_profiles 
+        WHERE user_member_id = ?`;
+    pool.query(query, [userId], (error, results) => {
         if (error) {
             return callback(error);
         }
