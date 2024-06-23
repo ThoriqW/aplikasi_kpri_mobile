@@ -22,17 +22,25 @@ class AccountView extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 35.0),
-              child: const Row(
+              child: Row(
                 children: [
                   CircleAvatar(
                     radius: 40,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/thoriq.png"),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.surfaceVariant,
                       radius: 37,
+                      child: Icon(
+                        Icons.person,
+                        size: 40,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
-                  SizedBox(width: 16),
-                  Column(
+                  const SizedBox(width: 16),
+                  const Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -1,7 +1,6 @@
 import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:aplikasi_kpri_mobile/widgets/dropdown_month.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoanView extends StatefulWidget {
   const LoanView({super.key});

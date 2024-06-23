@@ -17,24 +17,21 @@ class HomeMenu extends StatelessWidget {
       onTap: () {
         onTap();
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12),
-        child: Column(
-          children: [
-            SvgPicture.asset(
-              "assets/images/$image",
-              width: 55,
+      child: Column(
+        children: [
+          SvgPicture.asset(
+            "assets/images/$image",
+            width: 45,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

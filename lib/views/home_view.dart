@@ -26,19 +26,26 @@ class HomeView extends StatelessWidget {
                 Container(
                   color: Theme.of(context).colorScheme.primary,
                   width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 50.0),
-                  child: const Row(
+                  padding: const EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 70.0),
+                  child: Row(
                     children: [
                       CircleAvatar(
                         radius: 40,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.primaryContainer,
                         child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage("assets/images/thoriq.png"),
+                          backgroundColor:
+                              Theme.of(context).colorScheme.surfaceVariant,
                           radius: 37,
+                          child: Icon(
+                            Icons.person,
+                            size: 40,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 16),
-                      Column(
+                      const SizedBox(width: 16),
+                      const Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -66,7 +73,7 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: -75,
+                  bottom: -70,
                   child: Container(
                     width: MediaQuery.of(context).size.width - 32,
                     decoration: BoxDecoration(
@@ -148,55 +155,55 @@ class HomeView extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width - 64,
               margin: const EdgeInsets.only(top: 100),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      HomeMenu(
-                          title: "Simpanan", image: "wallet.svg", onTap: () {}),
-                      HomeMenu(
-                          title: "Pinjaman",
-                          image: "note.svg",
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoanView(),
-                              ),
-                            );
-                          }),
-                      HomeMenu(title: "THR", image: "gift.svg", onTap: () {}),
-                    ],
+              child: GridView.count(
+                crossAxisCount: 4,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 8,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: <Widget>[
+                  HomeMenu(
+                    title: "Simpanan",
+                    image: "wallet.svg",
+                    onTap: () {},
                   ),
-                  const SizedBox(
-                    height: 16,
+                  HomeMenu(
+                    title: "Pinjaman",
+                    image: "note.svg",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoanView(),
+                        ),
+                      );
+                    },
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      HomeMenu(
-                          title: "Informasi",
-                          image: "announcement.svg",
-                          onTap: () {}),
-                      HomeMenu(
-                          title: "Bantuan", image: "help.svg", onTap: () {}),
-                      HomeMenu(
-                          title: "Tentang",
-                          image: "about.svg",
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const AboutView(),
-                              ),
-                            );
-                          }),
-                    ],
+                  HomeMenu(
+                    title: "THR",
+                    image: "gift.svg",
+                    onTap: () {},
+                  ),
+                  HomeMenu(
+                    title: "Bantuan",
+                    image: "help.svg",
+                    onTap: () {},
+                  ),
+                  HomeMenu(
+                    title: "Tentang",
+                    image: "about.svg",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutView(),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

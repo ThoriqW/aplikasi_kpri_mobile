@@ -3,6 +3,7 @@ import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:aplikasi_kpri_mobile/api_connection/api_connection.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -14,7 +15,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final TextEditingController _nipController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final String apiUrl = 'http://192.168.1.13:3000';
+  final String apiUrl = API.hostConnect;
   final formKey = GlobalKey<FormState>();
 
   Future<void> login() async {

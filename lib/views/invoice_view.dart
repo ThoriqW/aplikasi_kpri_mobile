@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/views/detail_invoice_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/invoice_card.dart';
 import 'package:flutter/material.dart';
 
@@ -77,6 +78,14 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.primary,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailInvoiceView(),
+                          ),
+                        );
+                      },
                       borderIcon:
                           Theme.of(context).colorScheme.primaryContainer,
                     ),
@@ -86,6 +95,7 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.onSurfaceVariant,
+                      onTap: () {},
                       borderIcon:
                           Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
@@ -95,6 +105,7 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.primary,
+                      onTap: () {},
                       borderIcon:
                           Theme.of(context).colorScheme.primaryContainer,
                     ),
@@ -104,6 +115,7 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.primary,
+                      onTap: () {},
                       borderIcon:
                           Theme.of(context).colorScheme.primaryContainer,
                     ),
@@ -113,6 +125,7 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.primary,
+                      onTap: () {},
                       borderIcon:
                           Theme.of(context).colorScheme.primaryContainer,
                     ),
@@ -122,6 +135,7 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.primary,
+                      onTap: () {},
                       borderIcon:
                           Theme.of(context).colorScheme.primaryContainer,
                     ),
@@ -131,6 +145,7 @@ class InvoiceView extends StatelessWidget {
                       nominal: "Rp. 395,000",
                       date: DateTime.now(),
                       colorIcon: Theme.of(context).colorScheme.primary,
+                      onTap: () {},
                       borderIcon:
                           Theme.of(context).colorScheme.primaryContainer,
                     )

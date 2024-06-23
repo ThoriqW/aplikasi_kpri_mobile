@@ -31,33 +31,41 @@ class ProfileView extends StatelessWidget {
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50)),
               ),
-              child: const Column(
+              child: Column(
                 children: [
                   CircleAvatar(
                     radius: 40,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/thoriq.png"),
+                      backgroundColor:
+                          Theme.of(context).colorScheme.surfaceVariant,
                       radius: 37,
+                      child: Icon(
+                        Icons.person,
+                        size: 40,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
-                  Text(
+                  const Text(
                     "Moh Thoriq Wajedi",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.white),
                   ),
-                  Text(
+                  const Text(
                     "7204080401990001",
                     style: TextStyle(fontSize: 12, color: Colors.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
-                  Text(
+                  const Text(
                     "Bina Marga Kab. Tolitoli",
                     style: TextStyle(fontSize: 12, color: Colors.white),
                   ),
@@ -229,14 +237,6 @@ class ProfileView extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width - 32,
-              child: ButtonGlobal(
-                text: "Formulir Pinjaman",
-                onTap: () {},
-              ),
-            ),
-            const SizedBox(height: 25),
           ],
         ),
       ),
