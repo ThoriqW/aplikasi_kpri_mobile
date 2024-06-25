@@ -215,13 +215,6 @@ class _LoanViewState extends State<LoanView> {
                 ),
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 32,
-                child: ButtonGlobal(
-                  text: "Formulir Pinjaman",
-                  onTap: () {},
-                ),
-              )
             ],
           ),
         ),

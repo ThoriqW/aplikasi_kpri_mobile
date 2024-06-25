@@ -1,7 +1,5 @@
 import 'package:aplikasi_kpri_mobile/widgets/balance_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class BalanceView extends StatelessWidget {
   const BalanceView({super.key});

@@ -1,48 +1,46 @@
+import 'package:aplikasi_kpri_mobile/providers/auth_provider.dart';
 import 'package:aplikasi_kpri_mobile/views/main_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:aplikasi_kpri_mobile/api_connection/api_connection.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  ConsumerState<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends ConsumerState<LoginView> {
   final TextEditingController _nipController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final String apiUrl = API.hostConnect;
   final formKey = GlobalKey<FormState>();
 
-  Future<void> login() async {
-    final response = await http.post(
-      Uri.parse('$apiUrl/users/login'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'nip': _nipController.text,
-        'password': _passwordController.text,
-      }),
-    );
-
-    if (!mounted) return;
-
-    if (response.statusCode == 200) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MainView(),
-        ),
+  Future<void> _login() async {
+    try {
+      final authNotifier = ref.watch(authStateProvider.notifier);
+      await authNotifier.login(
+        _nipController.text,
+        _passwordController.text,
       );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login failed')),
-      );
+
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainView(),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString().substring(11)),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
     }
   }
 
@@ -126,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                         ButtonGlobal(
                           text: "Login",
                           onTap: () {
-                            login();
+                            _login();
                           },
                         ),
                       ],
