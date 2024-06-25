@@ -1,4 +1,5 @@
 import 'package:aplikasi_kpri_mobile/views/about_view.dart';
+import 'package:aplikasi_kpri_mobile/views/balance_view.dart';
 import 'package:aplikasi_kpri_mobile/views/loan_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/home_menu.dart';
 import 'package:flutter/material.dart';
@@ -165,7 +166,14 @@ class HomeView extends StatelessWidget {
                   HomeMenu(
                     title: "Simpanan",
                     image: "wallet.svg",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BalanceView(),
+                        ),
+                      );
+                    },
                   ),
                   HomeMenu(
                     title: "Pinjaman",

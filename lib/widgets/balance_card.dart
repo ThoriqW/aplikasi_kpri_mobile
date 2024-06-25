@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
-class InvoiceCard extends StatelessWidget {
-  const InvoiceCard({
+class BalanceCard extends StatelessWidget {
+  const BalanceCard({
     super.key,
-    required this.month,
-    required this.status,
+    required this.title,
     required this.nominal,
     required this.date,
+    required this.icon,
+    required this.onTap,
     required this.colorIcon,
     required this.borderIcon,
-    required this.onTap,
   });
-  final String month;
-  final String status;
+
+  final String title;
   final String nominal;
   final DateTime date;
+  final IconData icon;
+  final Function onTap;
   final Color colorIcon;
   final Color borderIcon;
-  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +45,13 @@ class InvoiceCard extends StatelessWidget {
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(width: 2, color: borderIcon),
+                    border: Border.all(
+                      width: 2,
+                      color: borderIcon,
+                    ),
                   ),
                   child: Icon(
-                    Icons.notes,
+                    icon,
                     color: colorIcon,
                   ),
                 ),
@@ -58,19 +62,11 @@ class InvoiceCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      month,
+                      title,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text(
-                      status,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w300, fontSize: 8),
                     ),
                     const SizedBox(
                       height: 6,

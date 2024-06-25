@@ -1,4 +1,3 @@
-import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -91,147 +90,87 @@ class ProfileView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    "Nomor Telepon",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                   const Text(
-                    "Nama Lengkap",
+                    "082296709235",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 12,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Email",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   const Text(
-                    "NIK",
+                    "thoriqwajedi88@gmail.com",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 12,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Jenis Kelamin",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   const Text(
-                    "Kantor",
+                    "Laki-Laki",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 12,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "No Telepon",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 12,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     "Tanggal Lahir",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 12,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
                   const Text(
-                    "Alamat",
+                    "04-01-1999",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Alamat",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
                   const SizedBox(height: 10),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 12,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
-                        ),
-                      ),
+                  const Text(
+                    "Jl. Nuri No.56",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Tanggal Masuk",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "25-06-2024",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
