@@ -12,12 +12,12 @@ const ProfileController = require('../controllers/ProfileController');
  *       - in: path
  *         name: userId
  *         required: true
- *         description: ID of the user profile to get
+ *         description: ID of the user to get the profile for
  *         schema:
  *           type: integer
  *     responses:
  *       200:
- *         description: Profile retrieved successfully
+ *         description: User profile data
  *         content:
  *           application/json:
  *             schema:
@@ -35,10 +35,6 @@ const ProfileController = require('../controllers/ProfileController');
  *                   type: integer
  *                 address:
  *                   type: string
- *                 phone_number:
- *                   type: string
- *                 email:
- *                   type: string
  *                 photo_url:
  *                   type: string
  *                 join_date:
@@ -46,6 +42,17 @@ const ProfileController = require('../controllers/ProfileController');
  *                   format: date
  *                 status:
  *                   type: string
+ *                 gender:
+ *                   type: string
+ *                 birth_date:
+ *                   type: string
+ *                   format: date
+ *                 created_at:
+ *                   type: string
+ *                   format: date-time
+ *                 updated_at:
+ *                   type: string
+ *                   format: date-time
  *       404:
  *         description: Profile not found
  *       500:
