@@ -1,45 +1,55 @@
-import 'package:aplikasi_kpri_mobile/models/auth_response.dart';
-import 'package:aplikasi_kpri_mobile/services/auth_service.dart';
+import 'dart:convert';
+
+import 'package:aplikasi_kpri_mobile/models/auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:aplikasi_kpri_mobile/api/api_connection.dart';
+import 'package:http/http.dart' as http;
 
-class AuthNotifier extends StateNotifier<AuthResponse?> {
-  AuthNotifier(this.authService) : super(null);
+class AuthNotifier extends StateNotifier<Authentication?> {
+  AuthNotifier() : super(null);
 
-  final AuthService authService;
+  final String baseUrl = API.baseUrl;
 
   Future<void> login(String nip, String password) async {
-    try {
-      final authResponse = await authService.login(nip, password);
-      await authService.saveToken(authResponse);
+    final response = await http.post(
+      Uri.parse('$baseUrl/users/login'),
+      headers: {'Content-Type': 'application/json; charset=UTF-8'},
+      body: jsonEncode({'nip': nip, 'password': password}),
+    );
+    if (response.statusCode == 200) {
+      final authResponse = Authentication.fromJson(jsonDecode(response.body));
+      await saveToken(authResponse);
       state = authResponse;
-    } catch (e) {
-      throw Exception(e.toString().substring(11));
+    } else {
+      throw Exception('Nip Atau Password Salah');
     }
   }
 
+  Future<void> saveToken(Authentication authResponse) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('accessToken', authResponse.accessToken);
+  }
+
   Future<void> loadToken() async {
-    final token = await authService.loadToken();
-    if (token != null) {
-      state = token;
+    final prefs = await SharedPreferences.getInstance();
+    final accessToken = prefs.getString('accessToken');
+    if (accessToken != null) {
+      state = Authentication(accessToken: accessToken);
     }
   }
 
   Future<void> logout() async {
-    await authService.logout();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('accessToken');
+    prefs.remove('refreshToken');
     state = null;
   }
 }
 
-final authServiceProvider = Provider<AuthService>(
+final authStateProvider = StateNotifierProvider<AuthNotifier, Authentication?>(
   (ref) {
-    return AuthService();
-  },
-);
-
-final authStateProvider = StateNotifierProvider<AuthNotifier, AuthResponse?>(
-  (ref) {
-    final authService = ref.watch(authServiceProvider);
-    return AuthNotifier(authService);
+    return AuthNotifier();
   },
 );
 

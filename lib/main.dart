@@ -1,4 +1,3 @@
-import 'package:aplikasi_kpri_mobile/utils/global_colors.dart';
 import 'package:aplikasi_kpri_mobile/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +17,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: GlobalColors.primaryColor),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromRGBO(54, 174, 122, 0),
+        ),
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
