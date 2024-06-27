@@ -1,5 +1,6 @@
 import 'package:aplikasi_kpri_mobile/views/about_view.dart';
 import 'package:aplikasi_kpri_mobile/views/balance_view.dart';
+import 'package:aplikasi_kpri_mobile/views/help_view.dart';
 import 'package:aplikasi_kpri_mobile/views/loan_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/home_menu.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,48 @@ class HomeView extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HelpView(),
+                ),
+              );
+            },
+            icon: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.headphones,
+                ),
+                const SizedBox(width: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Pusat",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontSize: 9,
+                      ),
+                    ),
+                    Text(
+                      "Bantuan",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontSize: 9,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -190,11 +233,6 @@ class HomeView extends StatelessWidget {
                   HomeMenu(
                     title: "THR",
                     image: "gift.svg",
-                    onTap: () {},
-                  ),
-                  HomeMenu(
-                    title: "Bantuan",
-                    image: "help.svg",
                     onTap: () {},
                   ),
                   HomeMenu(

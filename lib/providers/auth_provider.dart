@@ -22,7 +22,7 @@ class AuthNotifier extends StateNotifier<Authentication?> {
       await saveToken(authResponse);
       state = authResponse;
     } else {
-      throw Exception('Nip Atau Password Salah');
+      throw Exception('NIP Atau Password Salah');
     }
   }
 
