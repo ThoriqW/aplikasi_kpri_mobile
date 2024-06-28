@@ -1,5 +1,10 @@
 const Profile = require('../models/Profile');
 
+/**
+ * Get profile by user ID
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 const getProfileByUserId = (req, res) => {
     const userId = req.params.userId;
 
