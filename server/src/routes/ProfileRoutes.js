@@ -17,7 +17,7 @@ const ProfileController = require('../controllers/ProfileController');
  *           type: integer
  *     responses:
  *       200:
- *         description: User profile data
+ *         description: User profile retrieved successfully
  *         content:
  *           application/json:
  *             schema:
@@ -55,8 +55,24 @@ const ProfileController = require('../controllers/ProfileController');
  *                   format: date-time
  *       404:
  *         description: Profile not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Profile not found
  *       500:
  *         description: Database error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Database error
  */
 router.get('/:userId', ProfileController.getProfileByUserId);
 
