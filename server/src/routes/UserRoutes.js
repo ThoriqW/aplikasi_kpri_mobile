@@ -20,8 +20,10 @@ const UserController = require('../controllers/UserController');
  *             properties:
  *               nip:
  *                 type: string
+ *                 example: '12345678'
  *               password:
  *                 type: string
+ *                 example: 'password123'
  *     responses:
  *       200:
  *         description: User logged in successfully
@@ -59,15 +61,44 @@ router.post('/login', UserController.loginUser);
  *             properties:
  *               nip:
  *                 type: string
+ *                 example: '12345678'
  *               password:
  *                 type: string
+ *                 example: 'password123'
  *     responses:
  *       201:
  *         description: User added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User added successfully
+ *                 userId:
+ *                   type: integer
+ *                   example: 1
  *       400:
  *         description: NIP and password are required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: NIP and password are required
  *       500:
  *         description: Database error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Database error
  */
 router.post('/', UserController.addUser);
 
