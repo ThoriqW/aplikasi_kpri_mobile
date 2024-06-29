@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ProfileController = require('../controllers/ProfileController');
+const { authenticateToken, authorizeUser } = require('../middlewares/AuthMiddleware');
 
 /**
  * @swagger
@@ -23,45 +24,36 @@ const ProfileController = require('../controllers/ProfileController');
  *             schema:
  *               type: object
  *               properties:
- *                 code:
+ *                 id:
  *                   type: integer
+ *                 user_member_id:
+ *                   type: integer
+ *                 full_name:
+ *                   type: string
+ *                 position:
+ *                   type: string
+ *                 work_unit_id:
+ *                   type: integer
+ *                 address:
+ *                   type: string
+ *                 photo_url:
+ *                   type: string
+ *                 join_date:
+ *                   type: string
+ *                   format: date
  *                 status:
  *                   type: string
- *                 message:
+ *                 gender:
  *                   type: string
- *                 profile:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                     user_member_id:
- *                       type: integer
- *                     full_name:
- *                       type: string
- *                     position:
- *                       type: string
- *                     work_unit_id:
- *                       type: integer
- *                     address:
- *                       type: string
- *                     photo_url:
- *                       type: string
- *                     join_date:
- *                       type: string
- *                       format: date
- *                     status:
- *                       type: string
- *                     gender:
- *                       type: string
- *                     birth_date:
- *                       type: string
- *                       format: date
- *                     created_at:
- *                       type: string
- *                       format: date-time
- *                     updated_at:
- *                       type: string
- *                       format: date-time
+ *                 birth_date:
+ *                   type: string
+ *                   format: date
+ *                 created_at:
+ *                   type: string
+ *                   format: date-time
+ *                 updated_at:
+ *                   type: string
+ *                   format: date-time
  *       404:
  *         description: Profile not found
  *         content:
@@ -69,12 +61,9 @@ const ProfileController = require('../controllers/ProfileController');
  *             schema:
  *               type: object
  *               properties:
- *                 code:
- *                   type: integer
- *                 status:
+ *                 error:
  *                   type: string
- *                 message:
- *                   type: string
+ *                   example: Profile not found
  *       500:
  *         description: Database error
  *         content:
@@ -82,13 +71,10 @@ const ProfileController = require('../controllers/ProfileController');
  *             schema:
  *               type: object
  *               properties:
- *                 code:
- *                   type: integer
- *                 status:
+ *                 error:
  *                   type: string
- *                 message:
- *                   type: string
+ *                   example: Database error
  */
-router.get('/:userId', ProfileController.getProfileByUserId);
+router.get('/:userId', authenticateToken, authorizeUser, ProfileController.getProfileByUserId);
 
 module.exports = router;
