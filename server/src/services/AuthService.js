@@ -47,17 +47,14 @@ const login = (nip, password) => {
                     });
                 }
 
-                const token = jwt.sign({ id: user.id, nip: user.nip }, 'secret_key', { expiresIn: '1h' });
+                const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
                 resolve({
                     code: 200,
                     status: 'SUCCESS',
                     message: 'Login successful',
                     data: {
                         token,
-                        user: {
-                            id: user.id,
-                            nip: user.nip,
-                        }
+                        id: user.id
                     }
                 });
             });
