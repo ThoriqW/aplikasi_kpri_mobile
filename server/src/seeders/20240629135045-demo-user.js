@@ -18,7 +18,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        nip: '1903021',
+        nip: '190302021',
         password: hashedPassword2,
         createdAt: new Date(),
         updatedAt: new Date(),

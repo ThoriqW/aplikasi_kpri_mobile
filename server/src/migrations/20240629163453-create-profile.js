@@ -13,8 +13,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users', // Nama tabel yang di-referensi
-          key: 'id'      // Kolom yang di-referensi
+          model: 'Users',
+          key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
@@ -28,13 +28,13 @@ module.exports = {
       },
       work_unit_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'WorkUnits',
-          key: 'id' 
+          key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'SET NULL'
       },
       address: {
         type: Sequelize.TEXT
@@ -50,7 +50,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       gender: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       birth_date: {
         type: Sequelize.DATE

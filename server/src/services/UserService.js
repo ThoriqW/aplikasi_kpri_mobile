@@ -1,9 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-// const User = require('../models/User');
-
-console.log(User);
 
 const login = async (nip, password) => {
     if (!nip || !password) {
@@ -49,11 +46,15 @@ const login = async (nip, password) => {
         };
 
     } catch (error) {
-        throw {
-            code: 500,
-            status: 'SERVER_ERROR',
-            message: error.message || 'Internal server error',
-        };
+        if (error.code) {
+            throw error; // Rethrow the error if it already has a code
+        } else {
+            throw {
+                code: 500,
+                status: 'SERVER_ERROR',
+                message: error.message || 'Internal server error',
+            };
+        }
     }
 };
 
