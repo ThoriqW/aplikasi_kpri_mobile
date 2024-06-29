@@ -1,5 +1,3 @@
-// services/AuthService.js
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -51,7 +49,6 @@ const login = (nip, password) => {
 
                 const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
 
-                // Update token di basis data
                 User.updateToken(user.id, token, (updateError, updateResult) => {
                     if (updateError) {
                         return reject({

@@ -8,6 +8,15 @@ const options = {
       version: '1.0.0',
       description: 'Dokumentasi API untuk Aplikasi Mobile KPRI Karya Dharma',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
   apis: ['./src/routes/*.js'],
 };

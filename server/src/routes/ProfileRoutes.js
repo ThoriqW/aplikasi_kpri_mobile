@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ProfileController = require('../controllers/ProfileController');
-const authMiddleware = require('../middlewares/AuthMiddleware'); // Pastikan jalur impor ini benar
+const authMiddleware = require('../middlewares/AuthMiddleware');
 
 /**
  * @swagger
@@ -16,6 +16,8 @@ const authMiddleware = require('../middlewares/AuthMiddleware'); // Pastikan jal
  *         description: ID of the user to get the profile for
  *         schema:
  *           type: integer
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: User profile retrieved successfully
@@ -75,6 +77,6 @@ const authMiddleware = require('../middlewares/AuthMiddleware'); // Pastikan jal
  *                   type: string
  *                   example: Database error
  */
-router.get('/:userId', authMiddleware, ProfileController.getProfileByUserId); // Menggunakan authMiddleware sebagai middleware
+router.get('/:userId', authMiddleware, ProfileController.getProfileByUserId);
 
 module.exports = router;
