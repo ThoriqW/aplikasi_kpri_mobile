@@ -10,16 +10,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users', // Nama tabel yang di-referensi
+          key: 'id'      // Kolom yang di-referensi
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       full_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       position: {
         type: Sequelize.STRING
       },
       work_unit_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'WorkUnits', // Nama tabel yang di-referensi
+          key: 'id'           // Kolom yang di-referensi
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       address: {
         type: Sequelize.TEXT
@@ -28,7 +43,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       join_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       status: {
         type: Sequelize.STRING

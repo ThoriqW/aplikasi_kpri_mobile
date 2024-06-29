@@ -11,6 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Profile.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        as: 'user'
+      });
+
+      // Jika Anda memiliki model WorkUnit, Anda bisa menambahkan asosiasi seperti ini:
+      // Profile.belongsTo(models.WorkUnit, {
+      //   foreignKey: 'work_unit_id',
+      //   as: 'workUnit'
+      // });
     }
   }
   Profile.init({
