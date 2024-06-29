@@ -1,39 +1,42 @@
+import 'package:aplikasi_kpri_mobile/providers/loan_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const List<String> month = <String>['1 Bulan', '2 Bulan', '3 Bulan', '4 Bulan'];
-
-class DropDownMonth extends StatefulWidget {
+class DropDownMonth extends ConsumerStatefulWidget {
   const DropDownMonth({super.key});
 
   @override
-  State<DropDownMonth> createState() => _DropDownMonthState();
+  ConsumerState<DropDownMonth> createState() => _DropDownMonthState();
 }
 
-class _DropDownMonthState extends State<DropDownMonth> {
-  String _dropdownValue = month.first;
+class _DropDownMonthState extends ConsumerState<DropDownMonth> {
+  int _dropdownValue = 1;
 
-  void dropdownMonthCallback(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        _dropdownValue = selectedValue;
-      });
-    }
+  void dropdownMonthCallback(int selectedValue) {
+    setState(() {
+      _dropdownValue = selectedValue;
+      ref.watch(loanStateProvider.notifier).getMonth(_dropdownValue);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
+    return DropdownButton<int>(
       value: _dropdownValue,
       icon: const Icon(Icons.arrow_drop_down),
       underline: Container(),
-      items: month
-          .map<DropdownMenuItem<String>>((String value) => DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              ))
+      items: List.generate(12, (index) => index + 1)
+          .map<DropdownMenuItem<int>>(
+            (int value) => DropdownMenuItem(
+              value: value,
+              child: Text('$value Bulan'),
+            ),
+          )
           .toList(),
-      onChanged: (String? value) {
-        dropdownMonthCallback(value);
+      onChanged: (int? value) {
+        if (value != null) {
+          dropdownMonthCallback(value);
+        }
       },
     );
   }

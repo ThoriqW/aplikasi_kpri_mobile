@@ -19,30 +19,38 @@ class AuthNotifier extends StateNotifier<Authentication?> {
     );
     if (response.statusCode == 200) {
       final authResponse = Authentication.fromJson(jsonDecode(response.body));
-      await saveToken(authResponse);
+      await saveAuthRespon(authResponse);
       state = authResponse;
     } else {
-      throw Exception('NIP Atau Password Salah');
+      throw Exception('Gagal login');
     }
   }
 
-  Future<void> saveToken(Authentication authResponse) async {
+  Future<void> saveAuthRespon(Authentication authResponse) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('accessToken', authResponse.accessToken);
+    final authJson = jsonEncode({
+      'code': authResponse.code,
+      'status': authResponse.status,
+      'message': authResponse.message,
+      'token': authResponse.token,
+      'id': authResponse.id
+    });
+    await prefs.setString('auth_data', authJson);
   }
 
   Future<void> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
-    final accessToken = prefs.getString('accessToken');
-    if (accessToken != null) {
-      state = Authentication(accessToken: accessToken);
+    final authJson = prefs.getString('auth_data');
+    if (authJson != null) {
+      final Map<String, dynamic> authMap = jsonDecode(authJson);
+      final auth = Authentication.fromJson(authMap);
+      state = auth;
     }
   }
 
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.remove('accessToken');
-    prefs.remove('refreshToken');
+    prefs.remove('token');
     state = null;
   }
 }

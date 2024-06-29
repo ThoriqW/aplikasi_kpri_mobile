@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/views/help_view.dart';
 import 'package:aplikasi_kpri_mobile/views/profile_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/account_menu.dart';
 import 'package:flutter/material.dart';
@@ -112,36 +113,6 @@ class AccountView extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              Icons.payment,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Transaksi"),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
                               Icons.settings,
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -176,35 +147,17 @@ class AccountView extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                            width: 2,
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.help,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Pusat Bantuan"),
-                          ],
+                  AccountMenu(
+                    icon: Icons.person,
+                    text: "Pusat Bantuan",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HelpView(),
                         ),
-                        Icon(
-                          Icons.arrow_right,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        )
-                      ],
-                    ),
+                      );
+                    },
                   ),
                   Container(
                     padding: const EdgeInsets.all(12),

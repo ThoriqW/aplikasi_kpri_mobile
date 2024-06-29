@@ -1,18 +1,16 @@
+import 'package:aplikasi_kpri_mobile/providers/loan_providers.dart';
 import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:aplikasi_kpri_mobile/widgets/dropdown_month.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoanView extends StatefulWidget {
-  const LoanView({super.key});
+class LoanView extends ConsumerWidget {
+  LoanView({super.key});
 
-  @override
-  State<LoanView> createState() => _LoanViewState();
-}
-
-class _LoanViewState extends State<LoanView> {
   final TextEditingController _totalLoanController = TextEditingController();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final totalLoan = ref.watch(loanStateProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -67,7 +65,7 @@ class _LoanViewState extends State<LoanView> {
                                   const Text("Jumlah Pinjaman"),
                                   TextFormField(
                                     controller: _totalLoanController,
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.number,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -100,121 +98,140 @@ class _LoanViewState extends State<LoanView> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    ButtonGlobal(text: "Hitung", onTap: () {})
+                    ButtonGlobal(
+                      text: "Hitung",
+                      onTap: () {
+                        if (_totalLoanController.text != "") {
+                          ref.watch(loanStateProvider.notifier).calculateLoan(
+                                int.parse(_totalLoanController.text),
+                              );
+                        }
+                      },
+                    )
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(12.0),
-                width: MediaQuery.of(context).size.width - 32,
-                margin: const EdgeInsets.only(top: 15, bottom: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.1),
-                      blurRadius: 9,
-                      spreadRadius: 0,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: const Column(
-                  children: [
-                    Text(
-                      "Jumlah Angsuran",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+              if (totalLoan != null) ...[
+                Container(
+                  padding: const EdgeInsets.all(12.0),
+                  width: MediaQuery.of(context).size.width - 32,
+                  margin: const EdgeInsets.only(top: 15, bottom: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.1),
+                        blurRadius: 9,
+                        spreadRadius: 0,
+                        offset: Offset(0, 2),
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Jumlah Pinjaman"),
-                            Text(
-                              "Rp, 15,000,000",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            )
-                          ],
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Jumlah Angsuran",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
-                        SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Jangka Wakru"),
-                            Text(
-                              "Rp, 12 Bulan",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Pokok"),
-                            Text(
-                              "Rp. 1,250,000",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Bunga"),
-                            Text(
-                              "Rp. 350,000",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 8),
-                        Divider(),
-                        SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Total"),
-                            Text(
-                              "Rp. 1,600,000",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Jumlah Pinjaman"),
+                              Text(
+                                totalLoan.loan.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Jangka Waktu"),
+                              Text(
+                                "${totalLoan.month.toString()} Bulan",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Pokok"),
+                              Text(
+                                totalLoan.monthlyPayment.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Bunga"),
+                              Text(
+                                totalLoan.interest.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          const Divider(),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Total"),
+                              Text(
+                                totalLoan.totalLoan.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
+              ] else ...[
+                Text(
+                  "Hitung pinjaman anda",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ]
             ],
           ),
         ),

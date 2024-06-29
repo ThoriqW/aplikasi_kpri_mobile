@@ -1,11 +1,25 @@
 class Authentication {
-  final String accessToken;
+  final int code;
+  final String status;
+  final String message;
+  final String token;
+  final int id;
 
-  Authentication({required this.accessToken});
+  Authentication({
+    required this.code,
+    required this.status,
+    required this.message,
+    required this.token,
+    required this.id,
+  });
 
   factory Authentication.fromJson(Map<String, dynamic> json) {
     return Authentication(
-      accessToken: json["token"],
+      code: json["code"],
+      status: json["status"],
+      message: json["message"],
+      token: json["token"],
+      id: json["id"],
     );
   }
 }

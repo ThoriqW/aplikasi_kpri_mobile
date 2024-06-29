@@ -44,9 +44,13 @@ class InvoiceView extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                Icon(
-                  Icons.filter_list,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.notes,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    size: 32,
+                  ),
                 )
               ],
             ),
