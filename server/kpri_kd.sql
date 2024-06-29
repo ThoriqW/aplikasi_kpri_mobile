@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 25, 2024 at 06:42 AM
+-- Generation Time: Jun 29, 2024 at 07:39 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -189,18 +189,19 @@ CREATE TABLE `user_members` (
   `nip` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_active` tinyint(1) DEFAULT '1'
+  `is_active` tinyint(1) DEFAULT '1',
+  `current_token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_members`
 --
 
-INSERT INTO `user_members` (`id`, `nip`, `password`, `created_at`, `is_active`) VALUES
-(1, '190302029', '$2b$10$nOHmD5WQ6E0BvtWabLEqaeaHmZ7JRcWjtPgaD5In.eUXAm/od2rg.', '2024-06-19 22:14:58', 1),
-(3, '190302021', '$2b$10$Aw9/dV/1wl68yp7KJI0CHuuVF8qAuro7lXxFjSLtOcjJsJJqZ.b4m', '2024-06-19 22:45:40', 1),
-(6, '911', '$2b$10$.gg1nM7Ip9smahSUzQ7hZuo8Ui893NbQR6WmTRadkmatsOUZdsnze', '2024-06-19 23:10:40', 1),
-(7, '190302020', '$2b$10$ELViNt1wrvEBVRgUZST5dOwQYqJ.GtYA1FR2bcXvE/FNn8DwE2hBe', '2024-06-19 23:19:00', 1);
+INSERT INTO `user_members` (`id`, `nip`, `password`, `created_at`, `is_active`, `current_token`) VALUES
+(1, '190302029', '$2b$10$nOHmD5WQ6E0BvtWabLEqaeaHmZ7JRcWjtPgaD5In.eUXAm/od2rg.', '2024-06-19 22:14:58', 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE5NjQ1NDgzLCJleHAiOjE3MTk2NDkwODN9.X8fgZyFNApqd3wNcKUPKx6rTGY3bvLQ25krReJDPWGk'),
+(3, '190302021', '$2b$10$Aw9/dV/1wl68yp7KJI0CHuuVF8qAuro7lXxFjSLtOcjJsJJqZ.b4m', '2024-06-19 22:45:40', 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzE5NjQzMDY4LCJleHAiOjE3MTk2NDY2Njh9.N0qgUHqY52LNfT51sV46Atz9x_bfOrKjLQ689yCl7pk'),
+(6, '911', '$2b$10$.gg1nM7Ip9smahSUzQ7hZuo8Ui893NbQR6WmTRadkmatsOUZdsnze', '2024-06-19 23:10:40', 1, NULL),
+(7, '190302020', '$2b$10$ELViNt1wrvEBVRgUZST5dOwQYqJ.GtYA1FR2bcXvE/FNn8DwE2hBe', '2024-06-19 23:19:00', 1, NULL);
 
 -- --------------------------------------------------------
 
