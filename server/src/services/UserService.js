@@ -1,110 +1,92 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const { User } = require('../models');
+// const User = require('../models/User');
 
-const login = (nip, password) => {
-    return new Promise((resolve, reject) => {
-        if (!nip || !password) {
-            return reject({
-                code: 400,
-                status: 'BAD_REQUEST',
-                errors: {
-                    nip: nip ? [] : ['NIP is required'],
-                    password: password ? [] : ['Password is required']
-                }
-            });
+console.log(User);
+
+const login = async (nip, password) => {
+    if (!nip || !password) {
+        throw {
+            code: 400,
+            status: 'BAD_REQUEST',
+            errors: {
+                nip: nip ? [] : ['NIP is required'],
+                password: password ? [] : ['Password is required'],
+            },
+        };
+    }
+
+    try {
+        const user = await User.findOne({ where: { nip } });
+
+        if (!user) {
+            throw {
+                code: 404,
+                status: 'NOT_FOUND',
+                message: 'User not found',
+            };
         }
 
-        User.getUserByNIP(nip, (error, user) => {
-            if (error) {
-                return reject({
-                    code: 500,
-                    status: 'DATABASE_ERROR',
-                    message: 'Database error occurred'
-                });
-            }
-            if (!user) {
-                return reject({
-                    code: 404,
-                    status: 'NOT_FOUND',
-                    message: 'User not found'
-                });
-            }
+        const passwordMatch = await bcrypt.compare(password, user.password);
 
-            bcrypt.compare(password, user.password, (err, result) => {
-                if (err) {
-                    return reject({
-                        code: 500,
-                        status: 'SERVER_ERROR',
-                        message: 'Error comparing passwords'
-                    });
-                }
-                if (!result) {
-                    return reject({
-                        code: 401,
-                        status: 'INVALID_CREDENTIALS',
-                        message: 'Invalid credentials'
-                    });
-                }
+        if (!passwordMatch) {
+            throw {
+                code: 401,
+                status: 'INVALID_CREDENTIALS',
+                message: 'Invalid credentials',
+            };
+        }
 
-                const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
 
-                resolve({
-                    code: 200,
-                    status: 'SUCCESS',
-                    message: 'Login successful',
-                    token,
-                    id: user.id
-                });
-            });
-        });
-    });
+        return {
+            code: 200,
+            status: 'SUCCESS',
+            message: 'Login successful',
+            token,
+            id: user.id,
+        };
+
+    } catch (error) {
+        throw {
+            code: 500,
+            status: 'SERVER_ERROR',
+            message: error.message || 'Internal server error',
+        };
+    }
 };
 
-const addUser = (nip, password) => {
-    return new Promise((resolve, reject) => {
-        if (!nip || !password) {
-            return reject({
-                code: 400,
-                status: 'BAD_REQUEST',
-                errors: {
-                    nip: nip ? [] : ['NIP is required'],
-                    password: password ? [] : ['Password is required']
-                }
-            });
-        }
+const addUser = async (nip, password) => {
+    if (!nip || !password) {
+        throw {
+            code: 400,
+            status: 'BAD_REQUEST',
+            errors: {
+                nip: nip ? [] : ['NIP is required'],
+                password: password ? [] : ['Password is required'],
+            },
+        };
+    }
 
-        bcrypt.hash(password, 10, (err, hashedPassword) => {
-            if (err) {
-                return reject({
-                    code: 500,
-                    status: 'HASHING_ERROR',
-                    message: 'Error hashing password'
-                });
-            }
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await User.create({ nip, password: hashedPassword });
 
-            const newUser = {
-                nip,
-                password: hashedPassword
-            };
+        return {
+            code: 201,
+            status: 'CREATED',
+            message: 'User added successfully',
+            userId: newUser.id,
+        };
 
-            User.addUser(newUser, (error, result) => {
-                if (error) {
-                    return reject({
-                        code: 500,
-                        status: 'DATABASE_ERROR',
-                        message: 'Database error occurred'
-                    });
-                }
-                resolve({
-                    code: 201,
-                    status: 'CREATED',
-                    message: 'User added successfully',
-                    userId: result.insertId
-                });
-            });
-        });
-    });
+    } catch (error) {
+        throw {
+            code: 500,
+            status: 'SERVER_ERROR',
+            message: error.message || 'Internal server error',
+        };
+    }
 };
 
 module.exports = {
