@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpecs = require('./configs/swagger');
+const swaggerSpecs = require('./config/swagger');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const routes = require('./routes/Index');
+const routes = require('./routes/AppRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

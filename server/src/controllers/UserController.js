@@ -1,10 +1,10 @@
-const AuthService = require('../services/AuthService');
+const UserService = require('../services/UserService');
 
 const loginUser = async (req, res) => {
     const { nip, password } = req.body;
 
     try {
-        const result = await AuthService.login(nip, password);
+        const result = await UserService.login(nip, password);
         res.status(result.code).json(result);
     } catch (err) {
         res.status(err.code).json(err);
@@ -15,7 +15,7 @@ const addUser = async (req, res) => {
     const { nip, password } = req.body;
 
     try {
-        const result = await AuthService.addUser(nip, password);
+        const result = await UserService.addUser(nip, password);
         res.status(result.code).json(result);
     } catch (err) {
         res.status(err.code).json(err);

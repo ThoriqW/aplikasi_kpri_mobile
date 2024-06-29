@@ -49,22 +49,12 @@ const login = (nip, password) => {
 
                 const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
 
-                User.updateToken(user.id, token, (updateError, updateResult) => {
-                    if (updateError) {
-                        return reject({
-                            code: 500,
-                            status: 'DATABASE_ERROR',
-                            message: 'Error updating token'
-                        });
-                    }
-
-                    resolve({
-                        code: 200,
-                        status: 'SUCCESS',
-                        message: 'Login successful',
-                        token,
-                        id: user.id
-                    });
+                resolve({
+                    code: 200,
+                    status: 'SUCCESS',
+                    message: 'Login successful',
+                    token,
+                    id: user.id
                 });
             });
         });
