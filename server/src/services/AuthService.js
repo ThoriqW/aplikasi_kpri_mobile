@@ -52,10 +52,8 @@ const login = (nip, password) => {
                     code: 200,
                     status: 'SUCCESS',
                     message: 'Login successful',
-                    data: {
-                        token,
-                        id: user.id
-                    }
+                    token,
+                    id: user.id
                 });
             });
         });
