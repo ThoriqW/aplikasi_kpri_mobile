@@ -23,36 +23,45 @@ const ProfileController = require('../controllers/ProfileController');
  *             schema:
  *               type: object
  *               properties:
- *                 id:
+ *                 code:
  *                   type: integer
- *                 user_member_id:
- *                   type: integer
- *                 full_name:
- *                   type: string
- *                 position:
- *                   type: string
- *                 work_unit_id:
- *                   type: integer
- *                 address:
- *                   type: string
- *                 photo_url:
- *                   type: string
- *                 join_date:
- *                   type: string
- *                   format: date
  *                 status:
  *                   type: string
- *                 gender:
+ *                 message:
  *                   type: string
- *                 birth_date:
- *                   type: string
- *                   format: date
- *                 created_at:
- *                   type: string
- *                   format: date-time
- *                 updated_at:
- *                   type: string
- *                   format: date-time
+ *                 profile:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                     user_member_id:
+ *                       type: integer
+ *                     full_name:
+ *                       type: string
+ *                     position:
+ *                       type: string
+ *                     work_unit_id:
+ *                       type: integer
+ *                     address:
+ *                       type: string
+ *                     photo_url:
+ *                       type: string
+ *                     join_date:
+ *                       type: string
+ *                       format: date
+ *                     status:
+ *                       type: string
+ *                     gender:
+ *                       type: string
+ *                     birth_date:
+ *                       type: string
+ *                       format: date
+ *                     created_at:
+ *                       type: string
+ *                       format: date-time
+ *                     updated_at:
+ *                       type: string
+ *                       format: date-time
  *       404:
  *         description: Profile not found
  *         content:
@@ -60,9 +69,12 @@ const ProfileController = require('../controllers/ProfileController');
  *             schema:
  *               type: object
  *               properties:
- *                 error:
+ *                 code:
+ *                   type: integer
+ *                 status:
  *                   type: string
- *                   example: Profile not found
+ *                 message:
+ *                   type: string
  *       500:
  *         description: Database error
  *         content:
@@ -70,9 +82,12 @@ const ProfileController = require('../controllers/ProfileController');
  *             schema:
  *               type: object
  *               properties:
- *                 error:
+ *                 code:
+ *                   type: integer
+ *                 status:
  *                   type: string
- *                   example: Database error
+ *                 message:
+ *                   type: string
  */
 router.get('/:userId', ProfileController.getProfileByUserId);
 

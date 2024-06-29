@@ -1,3 +1,5 @@
+// models/User.js
+
 const pool = require('../configs/db');
 
 const getUserByNIP = (nip, callback) => {

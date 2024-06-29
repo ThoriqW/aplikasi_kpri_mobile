@@ -1,24 +1,19 @@
-const Profile = require('../models/Profile');
+const ProfileService = require('../services/ProfileService');
 
 /**
  * Get profile by user ID
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
-const getProfileByUserId = (req, res) => {
+const getProfileByUserId = async (req, res) => {
     const userId = req.params.userId;
 
-    Profile.getProfileByUserId(userId, (error, profile) => {
-        if (error) {
-            console.error('Error fetching profile:', error);
-            return res.status(500).json({ error: 'Database error' });
-        }
-        if (!profile) {
-            console.log('Profile not found for user ID:', userId);
-            return res.status(404).json({ error: 'Profile not found' });
-        }
-        res.status(200).json(profile);
-    });
+    try {
+        const result = await ProfileService.getProfileByUserId(userId);
+        res.status(result.code).json(result);
+    } catch (err) {
+        res.status(err.code).json(err);
+    }
 };
 
 module.exports = {
