@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     /**
@@ -15,24 +14,37 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id',
         as: 'user'
       });
-
-      // Jika Anda memiliki model WorkUnit, Anda bisa menambahkan asosiasi seperti ini:
-      // Profile.belongsTo(models.WorkUnit, {
-      //   foreignKey: 'work_unit_id',
-      //   as: 'workUnit'
-      // });
+      Profile.belongsTo(models.WorkUnit, {
+        foreignKey: 'work_unit_id',
+        as: 'workUnit'
+      });
     }
   }
   Profile.init({
-    user_id: DataTypes.INTEGER,
-    full_name: DataTypes.STRING,
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    full_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     position: DataTypes.STRING,
-    work_unit_id: DataTypes.INTEGER,
+    work_unit_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     address: DataTypes.TEXT,
     photo_url: DataTypes.STRING,
-    join_date: DataTypes.DATE,
+    join_date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     status: DataTypes.STRING,
-    gender: DataTypes.STRING,
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     birth_date: DataTypes.DATE,
     phone_number: DataTypes.STRING,
     email: DataTypes.STRING
