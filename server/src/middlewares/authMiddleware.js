@@ -1,43 +1,50 @@
 const jwt = require('jsonwebtoken');
-const secretKey = 'secret_key'; // Harus disimpan di environment variable
+const User = require('../models/User');
 
 const authenticateToken = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (!token) {
+    const authHeader = req.header('Authorization');
+    if (!authHeader) {
         return res.status(401).json({
             code: 401,
             status: 'UNAUTHORIZED',
-            message: 'No token provided'
+            message: 'Access token is missing'
         });
     }
 
-    jwt.verify(token, secretKey, (err, user) => {
+    const token = authHeader.replace('Bearer ', '');
+
+    jwt.verify(token, 'secret_key', (err, decoded) => {
         if (err) {
-            return res.status(403).json({
-                code: 403,
-                status: 'FORBIDDEN',
-                message: 'Failed to authenticate token'
+            return res.status(401).json({
+                code: 401,
+                status: 'UNAUTHORIZED',
+                message: 'Invalid access token'
             });
         }
 
-        req.user = user; // Simpan informasi pengguna ke dalam request
-        next();
+        const userId = decoded.id;
+        User.getUserById(userId, (error, user) => {
+            if (error || !user || user.current_token !== token) {
+                return res.status(401).json({
+                    code: 401,
+                    status: 'UNAUTHORIZED',
+                    message: 'Invalid access token'
+                });
+            }
+
+            const requestedUserId = parseInt(req.params.userId, 10);
+            if (user.id !== requestedUserId) {
+                return res.status(403).json({
+                    code: 403,
+                    status: 'FORBIDDEN',
+                    message: 'Access denied'
+                });
+            }
+
+            req.user = user;
+            next();
+        });
     });
 };
 
-const authorizeUser = (req, res, next) => {
-    const userId = req.params.userId;
-    if (parseInt(userId) !== req.user.id) {
-        return res.status(403).json({
-            code: 403,
-            status: 'FORBIDDEN',
-            message: 'Access denied'
-        });
-    }
-    next();
-};
-
-module.exports = {
-    authenticateToken,
-    authorizeUser
-};
+module.exports = authenticateToken;

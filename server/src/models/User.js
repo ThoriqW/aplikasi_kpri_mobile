@@ -1,5 +1,3 @@
-// models/User.js
-
 const pool = require('../configs/db');
 
 const getUserByNIP = (nip, callback) => {
@@ -20,7 +18,27 @@ const addUser = (user, callback) => {
     });
 };
 
+const updateToken = (id, token, callback) => {
+    pool.query('UPDATE user_members SET current_token = ? WHERE id = ?', [token, id], (error, results) => {
+        if (error) {
+            return callback(error);
+        }
+        callback(null, results);
+    });
+};
+
+const getUserById = (id, callback) => {
+    pool.query('SELECT * FROM user_members WHERE id = ?', [id], (error, results) => {
+        if (error) {
+            return callback(error);
+        }
+        callback(null, results[0]);
+    });
+};
+
 module.exports = {
     getUserByNIP,
-    addUser
+    addUser,
+    updateToken,
+    getUserById
 };

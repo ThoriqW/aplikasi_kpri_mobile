@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ProfileController = require('../controllers/ProfileController');
-const { authenticateToken, authorizeUser } = require('../middlewares/AuthMiddleware');
+const authMiddleware = require('../middlewares/AuthMiddleware'); // Pastikan jalur impor ini benar
 
 /**
  * @swagger
@@ -75,6 +75,6 @@ const { authenticateToken, authorizeUser } = require('../middlewares/AuthMiddlew
  *                   type: string
  *                   example: Database error
  */
-router.get('/:userId', authenticateToken, authorizeUser, ProfileController.getProfileByUserId);
+router.get('/:userId', authMiddleware, ProfileController.getProfileByUserId); // Menggunakan authMiddleware sebagai middleware
 
 module.exports = router;

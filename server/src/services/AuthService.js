@@ -1,3 +1,5 @@
+// services/AuthService.js
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -48,12 +50,24 @@ const login = (nip, password) => {
                 }
 
                 const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
-                resolve({
-                    code: 200,
-                    status: 'SUCCESS',
-                    message: 'Login successful',
-                    token,
-                    id: user.id
+
+                // Update token di basis data
+                User.updateToken(user.id, token, (updateError, updateResult) => {
+                    if (updateError) {
+                        return reject({
+                            code: 500,
+                            status: 'DATABASE_ERROR',
+                            message: 'Error updating token'
+                        });
+                    }
+
+                    resolve({
+                        code: 200,
+                        status: 'SUCCESS',
+                        message: 'Login successful',
+                        token,
+                        id: user.id
+                    });
                 });
             });
         });
