@@ -106,8 +106,7 @@ INSERT INTO `bills` (`id`, `user_member_id`, `month`, `year`, `time_period`, `in
 --
 
 CREATE TABLE `member_profiles` (
-  `id` int NOT NULL,
-  `user_member_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `position` varchar(100) DEFAULT NULL,
   `work_unit_id` int NOT NULL,
@@ -117,8 +116,6 @@ CREATE TABLE `member_profiles` (
   `status` varchar(100) DEFAULT NULL,
   `gender` enum('male','female','other') DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --

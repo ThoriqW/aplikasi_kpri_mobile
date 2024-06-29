@@ -30,8 +30,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'WorkUnits', // Nama tabel yang di-referensi
-          key: 'id'           // Kolom yang di-referensi
+          model: 'WorkUnits',
+          key: 'id' 
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
