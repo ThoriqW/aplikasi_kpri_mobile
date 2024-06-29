@@ -46,8 +46,8 @@ const login = async (nip, password) => {
         };
 
     } catch (error) {
-        if (error.code) 
-            throw error; // Rethrow the error if it already has a code
+        if (error.code) {
+            throw error;
         } else {
             throw {
                 code: 500,
