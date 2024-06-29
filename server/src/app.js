@@ -1,16 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpecs = require('./config/swagger');
+const swaggerSpecs = require('./configs/swagger');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const userRoutes = require('./routes/UserRoutes');
-const profileRoutes = require('./routes/ProfileRoutes');
-const billRoutes = require('./routes/BillRoutes');
-const organizationRoutes = require('./routes/OrganizationRoutes');
-const balanceSavingRoutes = require('./routes/BalanceSavingRoutes');
-const bannerRoutes = require('./routes/BannerRoutes');
-const notificationRoutes = require('./routes/NotificationRoutes');
+const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,13 +18,7 @@ app.use(morgan('dev'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 // Routes
-app.use('/users', userRoutes);
-app.use('/profiles', profileRoutes);
-app.use('/bills', billRoutes);
-app.use('/organizations', organizationRoutes);
-app.use('/balance_savings', balanceSavingRoutes);
-app.use('/banners', bannerRoutes);
-app.use('/notifications', notificationRoutes);
+app.use('/', routes);
 
 // Start server
 app.listen(PORT, () => {

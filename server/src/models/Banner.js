@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../configs/db');
 
 const getActiveBanners = (callback) => {
     const query = 'SELECT * FROM banners WHERE status = ? ORDER BY created_at DESC';

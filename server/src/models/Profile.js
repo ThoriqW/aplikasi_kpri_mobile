@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../configs/db');
 
 const getProfileByUserId = (userId, callback) => {
     const query = `

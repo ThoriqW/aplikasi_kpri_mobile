@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../configs/db');
 
 const getNotificationsByUserIdAndType = (userMemberId, type, callback) => {
     let query = 'SELECT * FROM notifications WHERE user_member_id = ?';

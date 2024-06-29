@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../configs/db');
 
 const getBalanceSavingByUserId = (userId, callback) => {
     pool.query('SELECT * FROM balance_savings WHERE user_member_id = ?', [userId], (error, results) => {

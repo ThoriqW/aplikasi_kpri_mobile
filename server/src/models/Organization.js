@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+const pool = require('../configs/db');
 
 const getOrganizationByRole = (role, callback) => {
     const query = role ? 'SELECT * FROM organizations WHERE role = ?' : 'SELECT * FROM organizations';
