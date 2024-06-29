@@ -1,24 +1,24 @@
-const pool = require('../config/db');
-
-const getUserByNIP = (nip, callback) => {
-    pool.query('SELECT * FROM user_members WHERE nip = ?', [nip], (error, results) => {
-        if (error) {
-            return callback(error);
-        }
-        callback(null, results[0]);
-    });
-};
-
-const addUser = (user, callback) => {
-    pool.query('INSERT INTO user_members (nip, password) VALUES (?, ?)', [user.nip, user.password], (error, results) => {
-        if (error) {
-            return callback(error);
-        }
-        callback(null, results);
-    });
-};
-
-module.exports = {
-    getUserByNIP,
-    addUser,
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  User.init({
+    nip: DataTypes.STRING,
+    password: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
+  return User;
 };
