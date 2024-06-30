@@ -1,8 +1,17 @@
-const { Profile } = require('../models');
+const { Profile, WorkUnit } = require('../models');
 
 const getProfileByUserId = async (userId) => {
   try {
-    const profile = await Profile.findOne({ where: { user_id: userId } });
+    const profile = await Profile.findOne({
+      where: { user_id: userId },
+      include: [
+        {
+          model: WorkUnit,
+          as: 'workUnit',
+          attributes: ['name']
+        }
+      ]
+    });
 
     if (!profile) {
       throw {
@@ -12,11 +21,30 @@ const getProfileByUserId = async (userId) => {
       };
     }
 
+    const profileData = profile.toJSON();
+    const workUnitName = profileData.workUnit ? profileData.workUnit.name : null;
+
+    const responseProfile = {
+      id: profileData.id,
+      user_id: profileData.user_id,
+      full_name: profileData.full_name,
+      work_unit_name: workUnitName,
+      position: profileData.position,
+      address: profileData.address,
+      photo_url: profileData.photo_url,
+      join_date: profileData.join_date,
+      status: profileData.status,
+      gender: profileData.gender,
+      birth_date: profileData.birth_date,
+      phone_number: profileData.phone_number,
+      email: profileData.email
+    };
+
     return {
       code: 200,
       status: 'SUCCESS',
       message: 'Profile retrieved successfully',
-      profile
+      profile: responseProfile
     };
   } catch (error) {
     if (error.name === 'SequelizeValidationError') {
