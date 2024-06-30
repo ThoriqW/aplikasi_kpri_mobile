@@ -3,14 +3,15 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
 const login = async (nip, password) => {
-    if (!nip || !password) {
+    const errors = {};
+    if (!nip) errors.nip = ['NIP is required'];
+    if (!password) errors.password = ['Password is required'];
+
+    if (Object.keys(errors).length > 0) {
         throw {
             code: 400,
             status: 'BAD_REQUEST',
-            errors: {
-                nip: nip ? [] : ['NIP is required'],
-                password: password ? [] : ['Password is required'],
-            },
+            errors,
         };
     }
 
@@ -59,14 +60,15 @@ const login = async (nip, password) => {
 };
 
 const addUser = async (nip, password) => {
-    if (!nip || !password) {
+    const errors = {};
+    if (!nip) errors.nip = ['NIP is required'];
+    if (!password) errors.password = ['Password is required'];
+
+    if (Object.keys(errors).length > 0) {
         throw {
             code: 400,
             status: 'BAD_REQUEST',
-            errors: {
-                nip: nip ? [] : ['NIP is required'],
-                password: password ? [] : ['Password is required'],
-            },
+            errors,
         };
     }
 

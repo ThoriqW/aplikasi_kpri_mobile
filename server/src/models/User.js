@@ -12,8 +12,35 @@ module.exports = (sequelize, DataTypes) => {
   }
   
   User.init({
-    nip: DataTypes.STRING,
-    password: DataTypes.STRING
+    nip: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notNull: {
+          msg: 'NIP is required'
+        },
+        notEmpty: {
+          msg: 'NIP cannot be empty'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Password is required'
+        },
+        notEmpty: {
+          msg: 'Password cannot be empty'
+        },
+        len: {
+          args: [6, 128],
+          msg: 'Password should be between 6 and 128 characters'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'User',
