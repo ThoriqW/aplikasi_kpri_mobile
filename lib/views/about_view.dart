@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/views/contact_view.dart';
 import 'package:flutter/material.dart';
 
 class AboutView extends StatelessWidget {
@@ -118,25 +119,35 @@ class AboutView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 24,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        width: 2,
-                        color: Theme.of(context).colorScheme.onInverseSurface,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ContactView(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 24,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 2,
+                          color: Theme.of(context).colorScheme.onInverseSurface,
+                        ),
                       ),
                     ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Alamat dan Kontak"),
-                      Icon(Icons.arrow_right),
-                    ],
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Alamat dan Kontak"),
+                        Icon(Icons.arrow_right),
+                      ],
+                    ),
                   ),
                 )
               ],
