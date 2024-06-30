@@ -1,5 +1,3 @@
-// middleware/errorHandler.js
-
 const { ValidationError } = require('sequelize');
 
 const errorHandler = (err, req, res, next) => {

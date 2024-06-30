@@ -4,7 +4,7 @@ const UserController = require('../controllers/UserController');
 
 /**
  * @swagger
- * /users/login:
+ * /api/v1/users/login:
  *   post:
  *     summary: Login user
  *     tags: [Users]
@@ -45,7 +45,7 @@ router.post('/login', UserController.loginUser);
 
 /**
  * @swagger
- * /users:
+ * /api/v1/users:
  *   post:
  *     summary: Add user
  *     tags: [Users]
