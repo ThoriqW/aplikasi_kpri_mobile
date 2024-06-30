@@ -5,7 +5,7 @@ const getProfileByUserId = async (userId) => {
     const profile = await Profile.findOne({ where: { user_id: userId } });
 
     if (!profile) {
-      return {
+      throw {
         code: 404,
         status: 'NOT_FOUND',
         message: 'Profile not found'
@@ -19,10 +19,21 @@ const getProfileByUserId = async (userId) => {
       profile
     };
   } catch (error) {
-    return {
+    if (error.name === 'SequelizeValidationError') {
+      throw {
+        code: 400,
+        status: 'VALIDATION_ERROR',
+        message: 'Validation error',
+        errors: error.errors.map(err => ({
+          field: err.path,
+          message: err.message
+        }))
+      };
+    }
+    throw {
       code: 500,
-      status: 'DATABASE_ERROR',
-      message: 'Database error occurred'
+      status: 'SERVER_ERROR',
+      message: error.message || 'Internal server error'
     };
   }
 };
