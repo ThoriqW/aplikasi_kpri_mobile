@@ -4,7 +4,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Saving extends Model {
     static associate(models) {
-      // Define association here
       Saving.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user'
@@ -16,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Users', // Assumes there is a User model with a table name 'Users'
+        model: 'Users',
         key: 'id'
       }
     },

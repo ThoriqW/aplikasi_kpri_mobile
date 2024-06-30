@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id',
         as: 'profile'
       });
+      User.hasOne(models.Saving, {
+        foreignKey: 'user_id',
+        as: 'saving'
+      });
     }
   }
   
