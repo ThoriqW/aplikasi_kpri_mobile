@@ -1,4 +1,4 @@
-const { Profile, WorkUnit } = require('../models');
+const { Profile, WorkUnit, User } = require('../models');
 
 const getProfileByUserId = async (userId) => {
   try {
@@ -9,6 +9,11 @@ const getProfileByUserId = async (userId) => {
           model: WorkUnit,
           as: 'workUnit',
           attributes: ['name']
+        },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['nip']
         }
       ]
     });
@@ -23,11 +28,13 @@ const getProfileByUserId = async (userId) => {
 
     const profileData = profile.toJSON();
     const workUnitName = profileData.workUnit ? profileData.workUnit.name : null;
+    const nip = profileData.user.nip;
 
     const responseProfile = {
       id: profileData.id,
       user_id: profileData.user_id,
       full_name: profileData.full_name,
+      nip: nip,
       work_unit_name: workUnitName,
       position: profileData.position,
       address: profileData.address,
