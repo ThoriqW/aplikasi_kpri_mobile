@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HelpCard extends StatelessWidget {
-  const HelpCard({
+class ContactCard extends StatelessWidget {
+  const ContactCard({
     super.key,
     required this.icon,
     required this.title,
@@ -17,19 +17,13 @@ class HelpCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        margin: const EdgeInsets.only(top: 8, bottom: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.1),
-              blurRadius: 9,
-              spreadRadius: 0,
-              offset: Offset(0, 2),
-            ),
-          ],
+          border: Border(
+            bottom: BorderSide(
+                width: 2,
+                color: Theme.of(context).colorScheme.onInverseSurface),
+          ),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,8 +52,8 @@ class HelpCard extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 10,
                     ),
                   ),
                   const SizedBox(
@@ -68,8 +62,8 @@ class HelpCard extends StatelessWidget {
                   Text(
                     subTitle,
                     style: const TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 8,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
                     ),
                   ),
                 ],

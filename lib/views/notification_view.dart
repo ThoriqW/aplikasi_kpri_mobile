@@ -1,3 +1,4 @@
+import 'package:aplikasi_kpri_mobile/views/detail_notification_view.dart';
 import 'package:aplikasi_kpri_mobile/widgets/notification_card.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,18 @@ class NotificationView extends StatelessWidget {
                 child: Column(
                   children: [
                     NotificationCard(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailNotificationView(
+                              title: "Pengumuman Potongan Simpanan Wajib",
+                              subTitle:
+                                  "Potongan Simpanan Wajib Anggota Mulai Januari 2024 Akan Dinaikan Dari Rp. 25,000 Menjadi Rp. 50,000",
+                            ),
+                          ),
+                        );
+                      },
                       notifTitle: "Pengumuman Potongan Simpanan Wajib",
                       notifContent:
                           "Potongan Simpanan Wajib Anggota Mulai Januari 2024 Akan Dinaikan Dari Rp. 25,000 Menjadi Rp. 50,000",
@@ -47,6 +60,18 @@ class NotificationView extends StatelessWidget {
                       notifIcon: Icons.notifications,
                     ),
                     NotificationCard(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailNotificationView(
+                              title: "Pengumuman Potongan Simpanan Wajib",
+                              subTitle:
+                                  "Potongan Simpanan Wajib Anggota Mulai Januari 2024 Akan Dinaikan Dari Rp. 25,000 Menjadi Rp. 50,000",
+                            ),
+                          ),
+                        );
+                      },
                       notifTitle: "KPRI KD Buka Layanan Penjualan Pulsa",
                       notifContent:
                           "KPRI KD Kini Menyediakan Jasa Penjualan Pulsa Untuk Semua Anggota KPRI KD",
@@ -56,6 +81,18 @@ class NotificationView extends StatelessWidget {
                       notifIcon: Icons.notifications,
                     ),
                     NotificationCard(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailNotificationView(
+                              title: "Pengumuman Potongan Simpanan Wajib",
+                              subTitle:
+                                  "Potongan Simpanan Wajib Anggota Mulai Januari 2024 Akan Dinaikan Dari Rp. 25,000 Menjadi Rp. 50,000",
+                            ),
+                          ),
+                        );
+                      },
                       notifTitle: "Tagihan Bulan Desembar",
                       notifContent:
                           "KPRI KD Kini Menyediakan Jasa Penjualan Pulsa Untuk Semua Anggota KPRI KD",
@@ -66,6 +103,18 @@ class NotificationView extends StatelessWidget {
                       notifIcon: Icons.check,
                     ),
                     NotificationCard(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailNotificationView(
+                              title: "Pengumuman Potongan Simpanan Wajib",
+                              subTitle:
+                                  "Potongan Simpanan Wajib Anggota Mulai Januari 2024 Akan Dinaikan Dari Rp. 25,000 Menjadi Rp. 50,000",
+                            ),
+                          ),
+                        );
+                      },
                       notifTitle: "Tunggakan Tagihan",
                       notifContent:
                           "Tagiahan November 2023 Belum Dibayarkan Dengan Total Rp. 395,000 Segera Lakukan Pembayaran",

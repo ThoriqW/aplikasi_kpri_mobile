@@ -13,7 +13,7 @@ class AuthNotifier extends StateNotifier<Authentication?> {
 
   Future<void> login(String nip, String password) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/users/login'),
+      Uri.parse('$baseUrl/api/v1/users/login'),
       headers: {'Content-Type': 'application/json; charset=UTF-8'},
       body: jsonEncode({'nip': nip, 'password': password}),
     );
