@@ -1,57 +1,35 @@
-const { Profile, WorkUnit, User } = require('../models');
+const { Notification } = require('../models');
 
-const getProfileByUserId = async (userId) => {
+const getNotificationByUserId = async (userId) => {
   try {
-    const profile = await Profile.findOne({
+    const notification = await Notification.findOne({
       where: { user_id: userId },
-      include: [
-        {
-          model: WorkUnit,
-          as: 'workUnit',
-          attributes: ['name']
-        },
-        {
-          model: User,
-          as: 'user',
-          attributes: ['nip']
-        }
-      ]
     });
 
-    if (!profile) {
+    if (!notification) {
       throw {
         code: 404,
         status: 'NOT_FOUND',
-        message: 'Profile not found'
+        message: 'Notification not found'
       };
     }
 
-    const profileData = profile.toJSON();
-    const workUnitName = profileData.workUnit ? profileData.workUnit.name : null;
-    const nip = profileData.user.nip;
+    const notificationData = notification.toJSON();
 
-    const responseProfile = {
-      id: profileData.id,
-      user_id: profileData.user_id,
-      full_name: profileData.full_name,
-      nip: nip,
-      work_unit_name: workUnitName,
-      position: profileData.position,
-      address: profileData.address,
-      photo_url: profileData.photo_url,
-      join_date: profileData.join_date,
-      status: profileData.status,
-      gender: profileData.gender,
-      birth_date: profileData.birth_date,
-      phone_number: profileData.phone_number,
-      email: profileData.email
+    const responseNotification = {
+      id: notificationData.id,
+      user_id: notificationData.user_id,
+      type: notificationData.type,
+      title: notificationData.title,
+      body: notificationData.body,
+      status: notificationData.status,
     };
 
     return {
       code: 200,
       status: 'SUCCESS',
-      message: 'Profile retrieved successfully',
-      profile: responseProfile
+      message: 'Notification retrieved successfully',
+      notification: responseNotification
     };
   } catch (error) {
     if (error.name === 'SequelizeValidationError') {
@@ -74,5 +52,5 @@ const getProfileByUserId = async (userId) => {
 };
 
 module.exports = {
-  getProfileByUserId,
+  getNotificationByUserId,
 };
