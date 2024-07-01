@@ -1,6 +1,6 @@
 const { Notification } = require('../models');
 
-const getNotificationByUserId = async (userId) => {
+const getNotificationsByUserId = async (userId) => {
   try {
     const notifications = await Notification.findAll({
       where: { user_id: userId },
@@ -53,5 +53,5 @@ const getNotificationByUserId = async (userId) => {
 };
 
 module.exports = {
-  getNotificationByUserId,
+  getNotificationsByUserId,
 };

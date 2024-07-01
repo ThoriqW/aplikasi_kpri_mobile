@@ -1,6 +1,6 @@
 const NotificationService = require('../services/NotificationService');
 
-const getNotificationByUserId = async (req, res, next) => {
+const getNotificationsByUserId = async (req, res, next) => {
     const userId = req.params.userId;
 
     try {
@@ -12,5 +12,5 @@ const getNotificationByUserId = async (req, res, next) => {
 };
 
 module.exports = {
-    getNotificationByUserId,
+    getNotificationsByUserId,
 };
