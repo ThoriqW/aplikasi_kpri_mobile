@@ -36,7 +36,7 @@ const login = async (nip, password) => {
             };
         }
 
-        const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id }, 'secret_key', { expiresIn: '5h' });
 
         return {
             code: 200,
