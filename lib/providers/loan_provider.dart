@@ -1,8 +1,14 @@
-import 'package:aplikasi_kpri_mobile/models/loan.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:async';
 
-class LoanNotifier extends StateNotifier<Loan?> {
-  LoanNotifier() : super(null);
+import 'package:aplikasi_kpri_mobile/models/loan.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'loan_provider.g.dart';
+
+@riverpod
+class LoanNotifier extends _$LoanNotifier {
+  @override
+  Loan? build() => null;
 
   final double interest = 0.02;
   int month = 1;
@@ -34,7 +40,3 @@ class LoanNotifier extends StateNotifier<Loan?> {
     );
   }
 }
-
-final loanStateProvider = StateNotifierProvider<LoanNotifier, Loan?>((ref) {
-  return LoanNotifier();
-});

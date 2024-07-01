@@ -1,4 +1,4 @@
-import 'package:aplikasi_kpri_mobile/providers/loan_providers.dart';
+import 'package:aplikasi_kpri_mobile/providers/loan_provider.dart';
 import 'package:aplikasi_kpri_mobile/widgets/button_global.dart';
 import 'package:aplikasi_kpri_mobile/widgets/dropdown_month.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ class LoanView extends ConsumerWidget {
   final TextEditingController _totalLoanController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final totalLoan = ref.watch(loanStateProvider);
+    final totalLoan = ref.watch(loanNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -102,7 +102,9 @@ class LoanView extends ConsumerWidget {
                       text: "Hitung",
                       onTap: () {
                         if (_totalLoanController.text != "") {
-                          ref.watch(loanStateProvider.notifier).calculateLoan(
+                          ref
+                              .watch(loanNotifierProvider.notifier)
+                              .calculateLoan(
                                 int.parse(_totalLoanController.text),
                               );
                         }
