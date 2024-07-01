@@ -1,11 +1,9 @@
 'use strict';
 
-const models = require('../models');
-
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await models.Profile.bulkCreate([
+    await queryInterface.bulkInsert('Profiles', [
       {
         user_id: 1,
         full_name: 'Moh Dwi Ramdhani',
