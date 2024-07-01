@@ -114,6 +114,6 @@ const authMiddleware = require('../middleware/authMiddleware');
  *                   type: string
  *                   example: Database error
  */
-router.get('/:userId', authMiddleware, BillController.getBillByUserId);
+router.get('/:userId', authMiddleware, BillController.getBillsByUserId);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const { Bill } = require('../models');
 
-const getBillByUserId = async (userId) => {
+const getBillsByUserId = async (userId) => {
   try {
     const bills = await Bill.findAll({
       where: { user_id: userId },
@@ -61,5 +61,5 @@ const getBillByUserId = async (userId) => {
 };
 
 module.exports = {
-  getBillByUserId,
+  getBillsByUserId,
 };
