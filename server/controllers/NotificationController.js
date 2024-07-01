@@ -4,7 +4,7 @@ const getNotificationsByUserId = async (req, res, next) => {
     const userId = req.params.userId;
 
     try {
-        const result = await NotificationService.getNotificationByUserId(userId);
+        const result = await NotificationService.getNotificationsByUserId(userId);
         res.status(result.code).json(result);
     } catch (err) {
         next(err);
