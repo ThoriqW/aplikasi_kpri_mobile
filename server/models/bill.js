@@ -1,11 +1,10 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Bill extends Model {
     static associate(models) {
-      Saving.belongsTo(models.User, {
+      Bill.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user'
       });
