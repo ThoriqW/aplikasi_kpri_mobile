@@ -19,10 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
     },
-    source: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     type: {
       type: DataTypes.STRING,
       allowNull: false
