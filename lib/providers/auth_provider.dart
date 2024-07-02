@@ -1,13 +1,17 @@
 import 'dart:convert';
 
 import 'package:aplikasi_kpri_mobile/models/auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:aplikasi_kpri_mobile/api/api_connection.dart';
 import 'package:http/http.dart' as http;
 
-class AuthNotifier extends StateNotifier<Authentication?> {
-  AuthNotifier() : super(null);
+part 'auth_provider.g.dart';
+
+@riverpod
+class AuthNotifier extends _$AuthNotifier {
+  @override
+  FutureOr<Authentication?> build() => null;
 
   final String baseUrl = API.baseUrl;
 
@@ -19,51 +23,35 @@ class AuthNotifier extends StateNotifier<Authentication?> {
     );
     if (response.statusCode == 200) {
       final authResponse = Authentication.fromJson(jsonDecode(response.body));
-      await saveAuthRespon(authResponse);
-      state = authResponse;
+      await saveToken(authResponse);
+      state = AsyncData(authResponse);
     } else {
       throw Exception('Gagal login');
     }
   }
 
-  Future<void> saveAuthRespon(Authentication authResponse) async {
+  Future<void> saveToken(Authentication authResponse) async {
     final prefs = await SharedPreferences.getInstance();
     final authJson = jsonEncode({
-      'code': authResponse.code,
-      'status': authResponse.status,
-      'message': authResponse.message,
+      'id': authResponse.id,
       'token': authResponse.token,
-      'id': authResponse.id
     });
-    await prefs.setString('auth_data', authJson);
+    await prefs.setString('token', authJson);
   }
 
   Future<void> loadToken() async {
     final prefs = await SharedPreferences.getInstance();
-    final authJson = prefs.getString('auth_data');
+    final authJson = prefs.getString('token');
     if (authJson != null) {
       final Map<String, dynamic> authMap = jsonDecode(authJson);
       final auth = Authentication.fromJson(authMap);
-      state = auth;
+      state = AsyncData(auth);
     }
   }
 
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('token');
-    state = null;
+    state = const AsyncData(null);
   }
 }
-
-final authStateProvider = StateNotifierProvider<AuthNotifier, Authentication?>(
-  (ref) {
-    return AuthNotifier();
-  },
-);
-
-final authProvider = FutureProvider<void>(
-  (ref) async {
-    final authNotifier = ref.watch(authStateProvider.notifier);
-    await authNotifier.loadToken();
-  },
-);

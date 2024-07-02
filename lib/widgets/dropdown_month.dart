@@ -1,4 +1,4 @@
-import 'package:aplikasi_kpri_mobile/providers/loan_providers.dart';
+import 'package:aplikasi_kpri_mobile/providers/loan_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ class _DropDownMonthState extends ConsumerState<DropDownMonth> {
   void dropdownMonthCallback(int selectedValue) {
     setState(() {
       _dropdownValue = selectedValue;
-      ref.watch(loanStateProvider.notifier).getMonth(_dropdownValue);
+      ref.watch(loanNotifierProvider.notifier).getMonth(_dropdownValue);
     });
   }
 

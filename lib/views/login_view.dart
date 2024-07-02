@@ -18,7 +18,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
 
   Future<void> _login() async {
     try {
-      final authNotifier = ref.watch(authStateProvider.notifier);
+      final authNotifier = ref.watch(authNotifierProvider.notifier);
       await authNotifier.login(
         _nipController.text,
         _passwordController.text,
