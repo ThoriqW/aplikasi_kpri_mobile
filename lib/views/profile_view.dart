@@ -73,7 +73,7 @@ class ProfileView extends ConsumerWidget {
                           height: 4,
                         ),
                         Text(
-                          profile.address,
+                          profile.address ?? "",
                           style: const TextStyle(
                               fontSize: 12, color: Colors.white),
                         ),
@@ -108,7 +108,7 @@ class ProfileView extends ConsumerWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          profile.phoneNumber,
+                          profile.phoneNumber ?? "",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -123,7 +123,7 @@ class ProfileView extends ConsumerWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          profile.email,
+                          profile.email ?? "",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -153,7 +153,7 @@ class ProfileView extends ConsumerWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          profile.birthDate,
+                          profile.birthDate ?? "",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -168,7 +168,7 @@ class ProfileView extends ConsumerWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          profile.address,
+                          profile.address ?? "",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -183,7 +183,7 @@ class ProfileView extends ConsumerWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          profile.status,
+                          profile.joinDate,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
