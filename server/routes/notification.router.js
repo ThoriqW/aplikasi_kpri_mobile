@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const NotificationController = require('../controllers/NotificationController');
-const authMiddleware = require('../middleware/authMiddleware');
+const { authorizeUserId } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -98,6 +98,6 @@ const authMiddleware = require('../middleware/authMiddleware');
  *                   type: string
  *                   example: "Database error"
  */
-router.get('/:userId', authMiddleware, NotificationController.getNotificationsByUserId);
+router.get('/:userId', authorizeUserId, NotificationController.getNotificationsByUserId);
 
 module.exports = router;

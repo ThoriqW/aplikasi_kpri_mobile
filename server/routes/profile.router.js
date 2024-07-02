@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ProfileController = require('../controllers/ProfileController');
-const authMiddleware = require('../middleware/authMiddleware');
+const { authorizeUserId } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -119,6 +119,6 @@ const authMiddleware = require('../middleware/authMiddleware');
  *                   type: string
  *                   example: Database error
  */
-router.get('/:userId', authMiddleware, ProfileController.getProfileByUserId);
+router.get('/:userId', authorizeUserId, ProfileController.getProfileByUserId);
 
 module.exports = router;

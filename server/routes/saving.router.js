@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const SavingController = require('../controllers/SavingController');
-const authMiddleware = require('../middleware/authMiddleware');
+const { authorizeUserId } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -93,6 +93,6 @@ const authMiddleware = require('../middleware/authMiddleware');
  *                   type: string
  *                   example: Database error
  */
-router.get('/:userId', authMiddleware, SavingController.getSavingByUserId);
+router.get('/:userId', authorizeUserId, SavingController.getSavingByUserId);
 
 module.exports = router;

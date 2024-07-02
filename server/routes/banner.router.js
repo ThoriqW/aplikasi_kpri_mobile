@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const BannerController = require('../controllers/BannerController');
-const authMiddleware = require('../middleware/authMiddleware'); // Jika diperlukan
+const { authenticateToken } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -57,6 +57,6 @@ const authMiddleware = require('../middleware/authMiddleware'); // Jika diperluk
  *                   type: string
  *                   example: Internal server error
  */
-router.get('/active', authMiddleware, BannerController.getActiveBanners);
+router.get('/', authenticateToken, BannerController.getActiveBanners);
 
 module.exports = router;
