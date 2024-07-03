@@ -39,12 +39,12 @@ module.exports = {
       }
     ];
 
-    for (let i = 3; i <= 27; i++) { // Generate 25 random profiles
+    for (let i = 3; i <= 27; i++) {
       profiles.push({
         user_id: i,
         full_name: faker.name.fullName(),
         position: faker.name.jobTitle(),
-        work_unit_id: faker.datatype.number({ min: 1, max: 14 }), // assuming you have 14 work units
+        work_unit_id: faker.datatype.number({ min: 1, max: 14 }),
         address: faker.address.streetAddress(),
         photo_url: faker.image.avatar(),
         join_date: faker.date.past().toISOString().split('T')[0],
