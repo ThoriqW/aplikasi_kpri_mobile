@@ -19,14 +19,14 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        url_photo: '/images/users/banner3.jpg',
+        url_photo: '/images/banners/banner3.jpg',
         title: 'Promo Jasa KPRI KD',
         is_active: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        url_photo: '/images/users/banner3.jpg',
+        url_photo: '/images/users/banner4.jpg',
         title: 'Peringatan Kemerdekaan Indonesia',
         is_active: 1,
         createdAt: new Date(),
