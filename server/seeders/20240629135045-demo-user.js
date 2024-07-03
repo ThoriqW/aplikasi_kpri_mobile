@@ -7,10 +7,9 @@ const saltRounds = 10;
 module.exports = {
   async up(queryInterface, Sequelize) {
     const hashedPassword = await bcrypt.hash('123123', saltRounds);
-    const defaultPassword = await bcrypt.hash('kprikd', saltRounds);
+    const hashedPassword2 = await bcrypt.hash('190302001', saltRounds);
 
-    // Pengguna tetap
-    const users = [
+    await queryInterface.bulkInsert('Users', [
       {
         nip: '190302029',
         password: hashedPassword,
@@ -23,30 +22,13 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-    ];
-
-    const generateRandomNIP = () => {
-      const yearOfBirth = '1985';
-      const monthOfBirth = '07';
-      const dayOfBirth = '23';
-      const yearOfPNS = '2005';
-      const monthOfPNS = '02';
-      const gender = Math.floor(Math.random() * 2) + 1;
-      const orderNumber = String(Math.floor(Math.random() * 900) + 100).padStart(3, '0');
-
-      return `${yearOfBirth}${monthOfBirth}${dayOfBirth}${yearOfPNS}${monthOfPNS}${gender}${orderNumber}`;
-    };
-
-    for (let i = 0; i < 30; i++) {
-      users.push({
-        nip: generateRandomNIP(),
-        password: defaultPassword,
+      {
+        nip: '190302001',
+        password: hashedPassword2,
         createdAt: new Date(),
         updatedAt: new Date(),
-      });
-    }
-
-    await queryInterface.bulkInsert('Users', users, {});
+      },
+    ]);
   },
 
   async down(queryInterface, Sequelize) {

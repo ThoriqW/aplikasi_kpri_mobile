@@ -1,24 +1,25 @@
 'use strict';
 
-const faker = require('@faker-js/faker').fakerID_ID;
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const savings = [];
-
-    for (let i = 1; i <= 32; i++) {
-      savings.push({
-        user_id: i,
-        principal: faker.datatype.number({ min: 10000, max: 10000 }),
-        mandatory: faker.datatype.number({ min: 1200000, max: 7000000 }),
-        voluntary: faker.datatype.boolean() ? faker.datatype.number({ min: 50000, max: 2000000 }) : null,
+    await queryInterface.bulkInsert('Savings', [
+      {
+        user_id: 1,
+        principal: 10000, 
+        mandatory: 3450500, 
         createdAt: new Date(),
         updatedAt: new Date(),
-      });
-    }
-
-    await queryInterface.bulkInsert('Savings', savings, {});
+      },
+      {
+        user_id: 2,
+        principal: 10000, 
+        mandatory: 2570000, 
+        voluntary: 500000,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
 
   async down(queryInterface, Sequelize) {

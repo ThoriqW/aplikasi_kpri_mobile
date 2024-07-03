@@ -5,22 +5,29 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Banners', [
       {
-        url_photo: 'https./sd.asdas.jpg',
-        title: 'sambutan blabla',
+        url_photo: '/images/banners/banner1.jpg',
+        title: 'Peringatan ulang tahun koperasi indonesia',
         is_active: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        url_photo: 'https./sd.as3232.jpg',
-        title: 'anggota keluarga',
+        url_photo: '/images/banners/banner2.jpg',
+        title: 'Penyambutan Bupati',
         is_active: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        url_photo: 'https./sd.vvvv.jpg',
-        title: 'peresmian bla bla',
+        url_photo: '/images/users/banner3.jpg',
+        title: 'Promo Jasa KPRI KD',
+        is_active: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        url_photo: '/images/users/banner3.jpg',
+        title: 'Peringatan Kemerdekaan Indonesia',
         is_active: 1,
         createdAt: new Date(),
         updatedAt: new Date(),

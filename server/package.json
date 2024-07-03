@@ -12,7 +12,6 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.19.2",
-    "faker": "^6.6.6",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
