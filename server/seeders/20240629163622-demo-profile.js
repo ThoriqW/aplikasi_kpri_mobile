@@ -1,9 +1,10 @@
 'use strict';
 
+const faker = require('@faker-js/faker').fakerID_ID;
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-
-    await queryInterface.bulkInsert('Profiles', [
+    const profiles = [
       {
         user_id: 1,
         full_name: 'Moh Dwi Ramdhani',
@@ -23,7 +24,7 @@ module.exports = {
       {
         user_id: 2,
         full_name: 'Moh Thoriq Wajedi',
-        position: 'Frontened Developer',
+        position: 'Frontend Developer',
         work_unit_id: 1,
         address: 'Tuweley',
         photo_url: 'https://example.com/photo_thoriq.jpg',
@@ -36,7 +37,28 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       }
-    ]);
+    ];
+
+    for (let i = 3; i <= 27; i++) { // Generate 25 random profiles
+      profiles.push({
+        user_id: i,
+        full_name: faker.name.fullName(),
+        position: faker.name.jobTitle(),
+        work_unit_id: faker.datatype.number({ min: 1, max: 14 }), // assuming you have 14 work units
+        address: faker.address.streetAddress(),
+        photo_url: faker.image.avatar(),
+        join_date: faker.date.past().toISOString().split('T')[0],
+        status: 'Active',
+        gender: faker.helpers.arrayElement(['male', 'female']),
+        birth_date: faker.date.past(30, new Date(1990, 0, 1)).toISOString().split('T')[0],
+        phone_number: faker.phone.number(),
+        email: faker.internet.email(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+    }
+
+    await queryInterface.bulkInsert('Profiles', profiles, {});
   },
 
   async down(queryInterface, Sequelize) {
