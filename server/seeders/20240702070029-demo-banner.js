@@ -26,7 +26,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        url_photo: '/images/users/banner4.jpg',
+        url_photo: '/images/banners/banner4.jpg',
         title: 'Peringatan Kemerdekaan Indonesia',
         is_active: 1,
         createdAt: new Date(),
