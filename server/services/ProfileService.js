@@ -19,11 +19,10 @@ const getProfileByUserId = async (userId) => {
     });
 
     if (!profile) {
-      throw {
-        code: 404,
-        status: 'NOT_FOUND',
-        message: 'Profile not found'
-      };
+      const error = new Error('Profile not found');
+      error.code = 404;
+      error.status = 'NOT_FOUND';
+      throw error;
     }
 
     const profileData = profile.toJSON();
@@ -66,6 +65,40 @@ const getProfileByUserId = async (userId) => {
       };
     }
     throw {
+      code: error.code || 500,
+      status: error.status || 'SERVER_ERROR',
+      message: error.message || 'Internal server error'
+    };
+  }
+};
+
+const addProfile = async (profileData, file) => {
+  try {
+    if (file) {
+      profileData.photo_url = `/profiles/${file.filename}`;
+    }
+
+    const newProfile = await Profile.create(profileData);
+
+    return {
+      code: 201,
+      status: 'CREATED',
+      message: 'Profile created successfully',
+      profile: newProfile
+    };
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError') {
+      throw {
+        code: 400,
+        status: 'VALIDATION_ERROR',
+        message: 'Validation error',
+        errors: error.errors.map(err => ({
+          field: err.path,
+          message: err.message
+        }))
+      };
+    }
+    throw {
       code: 500,
       status: 'SERVER_ERROR',
       message: error.message || 'Internal server error'
@@ -75,4 +108,5 @@ const getProfileByUserId = async (userId) => {
 
 module.exports = {
   getProfileByUserId,
+  addProfile
 };
